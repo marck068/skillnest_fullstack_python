@@ -50,6 +50,6 @@ while contador < 3: #Se crea un bucle while con una condición
    contador += 1 #Incrementa el valor en 1 en cada iteración
 
 def saludar_usuario(nombre): #def - Palabra reservada para crear una función
-   return f"Hola, {nombre}" #Devuelve un valor de la función
+    return f"Hola, {nombre}" #Devuelve un valor de la función
 
 print(saludar_usuario("Francisca")) #Se imprime "Hola francisca" - return de la función

@@ -30,6 +30,41 @@ if num < 60:
 #Tarea desafío
 #Ingresar 3 números por teclado e identificar cual es el mayor y cual 
 # es el menor. Mostrar ambos.
-num1 = int(input("Ingresar primer números: "))
-num2 = int(input("Ingresar segundo números: "))
-num3 = int(input("Ingresar tercer números: "))
+n1 = int(input("Ingresar primer números: "))
+n2 = int(input("Ingresar segundo números: "))
+n3 = int(input("Ingresar tercer números: "))
+
+if n1 > n2 and n3:
+    print(n1, "Es mayor y los numeros: ", n2, "y", n3)
+elif n2 > n3 and n1:
+    print(n2, "Es mayor y los numeros: ", n1, "y", n3)
+else :
+    print(n3, "Es mayor y los numeros: ", n1, "y", n2)
+    
+#Estrucutra if - elif - else
+num1 = int(input("Ingrese su primer número: "))
+num2 = int(input("Ingrese su segundo número: "))
+num3 = int(input("Ingrese su tercer número: "))
+
+if num1 >= num2 and num1 >= num3:
+    mayor = num1
+    if num2 <= num3:
+        menor = num2
+    else:
+        menor = num3
+
+
+elif num2 >= num1 and num2 >= num3:
+    mayor = num2
+    if num1 <= num3:
+        menor = num1
+    else:
+        menor = num3
+
+else:
+    mayor = num3
+    if num1 <= num2:
+        menor = num1
+    else:
+        nemor = num2
+print(f"El mayor es {mayor} y el menor es {menor}")

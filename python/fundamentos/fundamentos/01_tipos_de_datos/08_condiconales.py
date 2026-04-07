@@ -30,4 +30,6 @@ if num < 60:
 #Tarea desafío
 #Ingresar 3 números por teclado e identificar cual es el mayor y cual 
 # es el menor. Mostrar ambos.
-
+num1 = int(input("Ingresar primer números: "))
+num2 = int(input("Ingresar segundo números: "))
+num3 = int(input("Ingresar tercer números: "))

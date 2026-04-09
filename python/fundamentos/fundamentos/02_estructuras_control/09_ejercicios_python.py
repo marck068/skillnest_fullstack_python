@@ -3,7 +3,6 @@
 # 1. Números Pares Dinámicos
 # Desarrolla un programa que solicite al usuario cuántos números pares desea ver ($n$). 
 # El programa debe imprimir los primeros $n$ números pares positivos.
-
 def numerosDinamicos():
     n = int(input("¿Cuantos números deseas ver?: "))
     pares = []
@@ -15,7 +14,6 @@ def numerosDinamicos():
 # 2. Verificador de Edad y Acceso
 # Pide al usuario su año de nacimiento. Calcula su edad y muestra si es mayor de edad (18+). 
 # Si tiene menos de 18, indica cuántos años le faltan para la mayoría de edad.
-
 def verificador_edad():
     campo = input("Ingrese su año de nacimiento: ")
     edad = 2026 - int(campo)
@@ -42,12 +40,23 @@ def aplicarDescuento():
     else:
         descuento = 0
         total = producto
-        print(f"Subtotal es: ${producto}. El descuento aplicado es: {descuento}.")
-    
+        print(f"Subtotal es: ${producto}. El descuento aplicado es: {descuento}. Y el total del producto es: {total}")
+
 # 4. Clasificador de Números
 # Pide un número al usuario e indica si es: Positivo-Par, Positivo-Impar, Negativo-Par,
 # Negativo-Impar o Cero.
-
+def clasificadorNum():
+    num = int(input("Ingresar un número: "))
+    if num > 0:
+        if num % 2 == 0:
+            print("Positivo-Par")
+        elif num % 2 == 1:
+            print("Positivo-Impar")
+    elif num < 0:
+        if num % 2 == 0:
+            print("Negativo-Par")
+        elif num % 2 == 1:
+            print("Negativo-Impar")
 
 
 # II. Iteraciones y Bucles (Intermedio)
@@ -154,6 +163,9 @@ while continuar:
     elif opcion == "3":
         print("\nEjecutando ejercicio 3: ")
         print(aplicarDescuento())
+    elif opcion == "4":
+        print("\nEjecutando ejercicio 3: ")
+        print(clasificadorNum())
     elif opcion == "0":
         print("Saliendo...") 
         continuar = False

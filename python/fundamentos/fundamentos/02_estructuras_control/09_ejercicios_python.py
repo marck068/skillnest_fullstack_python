@@ -4,7 +4,7 @@
 # Desarrolla un programa que solicite al usuario cuántos números pares desea ver ($n$). 
 # El programa debe imprimir los primeros $n$ números pares positivos.
 
-def numerosoDinamico():
+def numerosDinamicos():
     n = int(input("¿Cuantos números deseas ver?: "))
     pares = []
     for i in range (1, ( n * 2 ) + 1):
@@ -33,20 +33,17 @@ verificador_edad()
 # Solicita el precio de un producto y la cantidad comprada.
 # Si el total supera los $100, aplica un 15% de descuento. Muestra el subtotal, 
 # el descuento aplicado y el total final.
-
-precio = float(input("Ingrese el precio del producto: "))
-cantidad = int(input("Ingrese la cantidad comprada: "))
-subtotal = precio * cantidad
-if subtotal > 100:
-    descuento = subtotal * 0.15
-    total = subtotal - descuento
-else:
-    total = subtotal
-print(f"Subtotal: ${subtotal:.2f}")
-if subtotal > 100:
-    print(f"Descuento aplicado: ${descuento:.2f}")
-print(f"Total: ${total:.2f}")
-
+def aplicarDescuento():
+    precio = float(input("Ingrese el precio del producto: "))
+    cantidad = int(input("Ingrese la cantidad comprada: "))
+    producto = precio * cantidad
+    if producto > 100:
+        descuento = producto * 0.15
+    else:
+        descuento = 0
+        total = producto
+        print(f"Subtotal es: ${producto}. El descuento aplicado es: {descuento}.")
+    
 # 4. Clasificador de Números
 # Pide un número al usuario e indica si es: Positivo-Par, Positivo-Impar, Negativo-Par,
 # Negativo-Impar o Cero.
@@ -129,3 +126,36 @@ print(f"Total: ${total:.2f}")
 # El día con la temperatura más baja (asumiendo que el índice 0 es Lunes).
 
 
+continuar = True
+while continuar:
+    print("\n --- ejercicio 1 Python---")
+    print(" ---1 ejercicio 1 ---")
+    print(" ---2 ejercicio 2 ---")    
+    print(" ---3 ejercicio 3 ---")
+    print(" ---4 ejercicio 4 ---")
+    print(" ---5 ejercicio 5 ---")
+    print(" ---6 ejercicio 6 ---")
+    print(" ---7 ejercicio 7 ---")
+    print(" ---8 ejercicio 8 ---")
+    print(" ---9 ejercicio 9 ---")
+    print(" ---10 ejercicio 10 ---")
+    print(" ---11 ejercicio 11 ---")
+    print(" ---12 ejercicio 12 ---")
+    print(" ---13 ejercicio 13 ---")
+    print(" ---14 ejercicio 14 ---")
+    print(" ---15 ejercicio 15 ---")
+    opcion = input("\n---- Elige una opción (1-15) o '(0 para salir)= ")
+    if opcion == "1":
+        print("\nEjecutando ejercicio 1: ")
+        print(numerosDinamicos())
+    elif opcion == "2":
+        print("\nEjecutando ejercicio 2: ")
+        print(verificador_edad())
+    elif opcion == "3":
+        print("\nEjecutando ejercicio 3: ")
+        print(aplicarDescuento())
+    elif opcion == "0":
+        print("Saliendo...") 
+        continuar = False
+    else:
+        print("Opción no válida, intenta otra vez")

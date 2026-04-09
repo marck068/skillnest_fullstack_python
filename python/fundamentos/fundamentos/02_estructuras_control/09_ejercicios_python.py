@@ -4,22 +4,48 @@
 # Desarrolla un programa que solicite al usuario cuántos números pares desea ver ($n$). 
 # El programa debe imprimir los primeros $n$ números pares positivos.
 
-num = int(input("Ingrese cuantos números pares quiere ver: "))
-for i in range(2, 2*num + 1, 2):
-    print(i)
-
+def numerosoDinamico():
+    n = int(input("¿Cuantos números deseas ver?: "))
+    pares = []
+    for i in range (1, ( n * 2 ) + 1):
+        if i % 2 == 0:
+            pares.append(i)
+    print(f"Mostrando pares: {pares}")
+    
 # 2. Verificador de Edad y Acceso
 # Pide al usuario su año de nacimiento. Calcula su edad y muestra si es mayor de edad (18+). 
 # Si tiene menos de 18, indica cuántos años le faltan para la mayoría de edad.
 
-
+def verificador_edad():
+    campo = input("Ingrese su año de nacimiento: ")
+    edad = 2026 - int(campo)
+    if campo == "":
+        print("Error")
+    elif edad >= 18:
+        print(f"Tienes acceso ya que tu edad es: {edad}")
+    elif edad > 0 and edad < 18:
+        print(f"No tiene acceso: te faltan {18 - edad} años.")
+    else:
+        print("No tiene Acceso")
+verificador_edad()
 
 # 3. Calculadora de Descuentos
 # Solicita el precio de un producto y la cantidad comprada.
 # Si el total supera los $100, aplica un 15% de descuento. Muestra el subtotal, 
 # el descuento aplicado y el total final.
 
-
+precio = float(input("Ingrese el precio del producto: "))
+cantidad = int(input("Ingrese la cantidad comprada: "))
+subtotal = precio * cantidad
+if subtotal > 100:
+    descuento = subtotal * 0.15
+    total = subtotal - descuento
+else:
+    total = subtotal
+print(f"Subtotal: ${subtotal:.2f}")
+if subtotal > 100:
+    print(f"Descuento aplicado: ${descuento:.2f}")
+print(f"Total: ${total:.2f}")
 
 # 4. Clasificador de Números
 # Pide un número al usuario e indica si es: Positivo-Par, Positivo-Impar, Negativo-Par,

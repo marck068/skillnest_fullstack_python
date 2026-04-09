@@ -1,11 +1,17 @@
 for i in range(4):
    print(i)
    
+
+   
 for i in range(2, 8):
    print(i)
    
+
+   
 for i in range(2, 10, 3):
    print(i)
+   
+
    
 for i in range(0, 15, 3):
    print(i)
@@ -15,9 +21,14 @@ for i in range(10, 1, -3):
    print(i)
 #Imprime: 10, 7, 4
 
+
+
 for letra in 'Python':
    print(letra)
 #Imprime: 'P', 'y', 't', 'h', 'o', 'n'
+
+
+
 
 lista = ['brócoli', 'pepino', 'pimiento']
 
@@ -29,6 +40,9 @@ for verdura in lista:
    print(verdura)
 #Imprime: brócoli, pepino, pimiento
 
+
+
+
 tupla = ('fresa', 'manzana', 'cereza')
 
 for i in range( len(tupla) ):
@@ -39,11 +53,22 @@ for fruta in tupla:
    print(fruta)
 #Imprime: fresa, manzana, cereza
 
+
+
+estudiante = {"nombre": "Gonzalo", "curso": "Python"}
+
+for clave in estudiante:
+   print(clave)
+#Imprime: nombre, curso
+
 estudiante = {"nombre": "Gonzalo", "curso": "Python"}
 
 for clave in estudiante:
    print(estudiante[clave])
 #Imprime: Gonzalo, Python
+
+
+
 
 platillos_tipicos = {"México": "Tacos", "Colombia": "Ajiaco", "Costa Rica": "Casado"}
 

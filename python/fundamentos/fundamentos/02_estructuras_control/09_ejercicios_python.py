@@ -57,6 +57,8 @@ def clasificadorNum():
             print("Negativo-Par")
         elif num % 2 == 1:
             print("Negativo-Impar")
+    else:
+        print("Es 0")
 
 
 # II. Iteraciones y Bucles (Intermedio)
@@ -64,7 +66,12 @@ def clasificadorNum():
 # 5. Tabla de Multiplicar Personalizada
 # Solicita un número entero y muestra su tabla de multiplicar del 1 al 12, pero solo muestra 
 # los resultados que sean múltiplos de 3.
-
+def tablaMultiplicar():
+    num = int(input("Ingresar número a trabajar: "))
+    for i in range (1, 13):
+        resultado = num + i
+        if resultado % 3 == 0:
+            print(f"Del {num} solo estos números son divisibles por 3: {resultado}")
 
 
 # 6. Sumatoria con Centinela
@@ -164,8 +171,42 @@ while continuar:
         print("\nEjecutando ejercicio 3: ")
         print(aplicarDescuento())
     elif opcion == "4":
-        print("\nEjecutando ejercicio 3: ")
+        print("\nEjecutando ejercicio 4: ")
         print(clasificadorNum())
+    elif opcion == "5":
+        print("\nEjecutando ejercicio 5: ")
+        print(tablaMultiplicar())
+    elif opcion == "6":
+        print("\nEjecutando ejercicio 6: ")
+        print()
+    elif opcion == "7":
+        print("\nEjecutando ejercicio 7: ")
+        print()
+    elif opcion == "8":
+        print("\nEjecutando ejercicio 8: ")
+        print()
+    elif opcion == "9":
+        print("\nEjecutando ejercicio 9: ")
+        print()
+    elif opcion == "10":
+        print("\nEjecutando ejercicio 10: ")
+        print()
+    elif opcion == "11":
+        print("\nEjecutando ejercicio 11: ")
+        print()
+    elif opcion == "12":
+        print("\nEjecutando ejercicio 12: ")
+        print()
+    elif opcion == "13":
+        print("\nEjecutando ejercicio 13: ")
+        print()
+    elif opcion == "14":
+        print("\nEjecutando ejercicio 14: ")
+        print()
+    elif opcion == "15":
+        print("\nEjecutando ejercicio 15: ")
+        print()
+
     elif opcion == "0":
         print("Saliendo...") 
         continuar = False

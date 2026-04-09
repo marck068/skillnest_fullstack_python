@@ -4,7 +4,9 @@
 # Desarrolla un programa que solicite al usuario cuántos números pares desea ver ($n$). 
 # El programa debe imprimir los primeros $n$ números pares positivos.
 
-
+num = int(input("Ingrese cuantos números pares quiere ver: "))
+for i in range(2, 2*num + 1, 2):
+    print(i)
 
 # 2. Verificador de Edad y Acceso
 # Pide al usuario su año de nacimiento. Calcula su edad y muestra si es mayor de edad (18+). 

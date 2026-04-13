@@ -125,7 +125,15 @@ def validacion():
 # 9. Registro de Nombres
 # Crea un arreglo vacío. Pide al usuario que ingrese 5 nombres.
 # Guárdalos en el arreglo y, al final, imprímelos en orden inverso al que fueron ingresados.
-
+def nombres():
+    nombres = []
+    maxi = 0
+    while maxi < 5:
+        inp = input(f"Por favor ingresar nombre {maxi + 1}")
+        if inp != "":
+            nombres.append(inp)
+        else:
+            print("Tienes que ingresar un nombre")
 
 
 # 10. Promedio de Notas

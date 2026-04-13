@@ -78,7 +78,14 @@ def tablaMultiplicar():
 # Crea un programa que pida números continuamente y los sume. 
 # El ciclo debe terminar cuando el usuario ingrese un número negativo. Al final, muestra la suma total 
 # (sin incluir el negativo).
-
+def sumatoriaCentinela():
+    suma_total = 0
+    while True:
+        n = int(input("Ingreasa un número (negativo para salir): "))
+        if n < 0:
+            break
+        suma_total += n
+    print(f"La suma total es: {suma_total}")
 
 
 # 7. Contador de Vocales

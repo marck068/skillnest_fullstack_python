@@ -91,8 +91,15 @@ def sumatoriaCentinela():
 # 7. Contador de Vocales
 # Pide al usuario una frase o palabra.
 # Utiliza un bucle para recorrer la cadena y contar cuántas vocales tiene en total.
-
-
+def contadorVocales():
+    texto = input("Ingresa una palabra o frase: ").lower()
+    vocales = 0
+    for i in range(len(texto)):
+        if texto[i] == "a" or texto[i] == "e" or texto[i] == "i" or texto[i] == "o" or texto[i] == "u":
+            vocales += 1
+        elif texto[i] == "á" or texto[i] == "é" or texto[i] == "í" or texto[i] == "ó" or texto[i] == "ú":
+            vocales += 1
+    print(f"La cadena {texto} tiene {vocales} vocales en total")
 
 # 8. Validación de Contraseña
 # Define una contraseña en una variable. Pide al usuario que la intente adivinar.
@@ -149,7 +156,7 @@ def sumatoriaCentinela():
 # El día con la temperatura más baja (asumiendo que el índice 0 es Lunes).
 
 
-continuar = True
+    continuar = True
 while continuar:
     print("\n --- ejercicio 1 Python---")
     print(" ---1 ejercicio 1 ---")
@@ -185,10 +192,10 @@ while continuar:
         print(tablaMultiplicar())
     elif opcion == "6":
         print("\nEjecutando ejercicio 6: ")
-        print()
+        print(sumatoriaCentinela())
     elif opcion == "7":
         print("\nEjecutando ejercicio 7: ")
-        print()
+        print(contadorVocales())
     elif opcion == "8":
         print("\nEjecutando ejercicio 8: ")
         print()

@@ -104,8 +104,21 @@ def contadorVocales():
 # 8. Validación de Contraseña
 # Define una contraseña en una variable. Pide al usuario que la intente adivinar.
 # Tienes un máximo de 3 intentos; si falla los 3, bloquea el acceso.
-
-
+def validacion():
+    con = 12345678
+    intentos = 1
+    while True:
+        ingresa = int(input("Ingresa la contraseña: "))
+        if ingresa == con:
+            print("Acceso concedido")
+            break
+        else:
+            intentos += 1
+            if intentos > 3:
+                print("Acceso denegado")
+            else:
+                print(f"numeros de intento: {intentos}")
+                break
 
 # III. Manejo de Arreglos / Listas (Avanzado)
 
@@ -198,7 +211,7 @@ while continuar:
         print(contadorVocales())
     elif opcion == "8":
         print("\nEjecutando ejercicio 8: ")
-        print()
+        print(validacion())
     elif opcion == "9":
         print("\nEjecutando ejercicio 9: ")
         print()

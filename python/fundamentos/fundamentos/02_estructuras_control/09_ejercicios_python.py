@@ -221,21 +221,27 @@ def listaCompras():
 # El día con la temperatura más baja (asumiendo que el índice 0 es Lunes).
 def analisisTemperatura():
     dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"]
-    temperaturas = []
+    diaSuperior = []
+    total = 0
+    baja = 100
+    diaBaja = ""
+    cant = 0
 
-    for dia in dias:
-        temp = float(input(f"Temperatura del {dia}: "))
-        temperaturas.append(temp)
-    
-    promedio = sum(temperaturas) / len(temperaturas)
-    mayores_25 = len([t for t in temperaturas if t > 25])
-    min_temp = min(temperaturas)
-    dia_min = dias(temperaturas.index(min_temp))
-    
-    print(f"Promedio semanal: {promedio}")
-    print(f"Días sobre 25°C: {mayores_25}")
-    print(f"Día más frio: {dia_min} {min_temp}°C")
+    while cant < 7:
+        temps = float(input(f"Ingrese temperatura del dia {dias[cant]}: "))
+        total += temps
 
+        if temps < baja and temps < 25:
+            baja = temps
+            diaBaja = dias[cant]
+        elif temps > 25:
+            diaSuperior.append(dias[cant])
+            
+        cant += 1
+        
+        print(f"El promedio de las temperaturas fue de {total / 7}")
+        print(f"El dia con la temperatura más baja fue el dia {diaBaja} con {baja}°")
+        print(f"Los dias más caluroso fueron {diaSuperior}")
 
     continuar = True
 while continuar:

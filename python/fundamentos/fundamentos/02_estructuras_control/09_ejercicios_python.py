@@ -205,14 +205,36 @@ def inventario():
 # 14. Generador de Lista de Compras
 # Usa un bucle while para que el usuario agregue artículos a una lista de compras. El proceso termina 
 # cuando el usuario escribe "terminar". Al final, muestra la lista ordenada alfabéticamente.
-
-
+def listaCompras():
+    lista = []
+    while True:
+        item = input("Articulo (o 'terminar')")
+        if item.lower() == "terminar":
+            break
+        lista.append(item)
+    print(f"Ordenada: {sorted(lista)}")
 
 # 15. Análisis de Temperaturas
 # Solicita las temperaturas de los 7 días de la semana y guárdalas en un arreglo. Muestra:
 # El promedio semanal.
 # Cuántos días la temperatura fue superior a 25 grados.
 # El día con la temperatura más baja (asumiendo que el índice 0 es Lunes).
+def analisisTemperatura():
+    dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"]
+    temperaturas = []
+
+    for dia in dias:
+        temp = float(input(f"Temperatura del {dia}: "))
+        temperaturas.append(temp)
+    
+    promedio = sum(temperaturas) / len(temperaturas)
+    mayores_25 = len([t for t in temperaturas if t > 25])
+    min_temp = min(temperaturas)
+    dia_min = dias(temperaturas.index(min_temp))
+    
+    print(f"Promedio semanal: {promedio}")
+    print(f"Días sobre 25°C: {mayores_25}")
+    print(f"Día más frio: {dia_min} {min_temp}°C")
 
 
     continuar = True
@@ -275,7 +297,7 @@ while continuar:
         print(inventario())
     elif opcion == "14":
         print("\nEjecutando ejercicio 14: ")
-        print()
+        print(listaCompras())
     elif opcion == "15":
         print("\nEjecutando ejercicio 15: ")
         print()

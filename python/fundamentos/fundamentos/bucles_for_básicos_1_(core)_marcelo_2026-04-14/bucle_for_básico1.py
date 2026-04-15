@@ -39,8 +39,10 @@ print("\n")
 # Suma todos los números pares del 0 al 500,000 e imprime la suma total.
 # (Tu código aquí)
 
-experiencia_total = suma(range(0, 500001, 2))
-    print(f"Experiencia acumulada: {experiencia_total}")
+sumaTotal = 0
+for i in range(0, 500001, 2):
+    sumaTotal += i
+print(f"Suma total: {sumaTotal}")
 
 print("\n")
 
@@ -49,7 +51,10 @@ print("\n")
 # Imprime cada valor en la cuenta regresiva.
 # (Tu código aquí)
 
-
+for year in range(2024, -1, -3):
+    print(year)
+    
+print("\n")
 
 # 6. Contador dinámico
 # Declara las variables inicio, fin, y salto (por ejemplo: inicio=3, fin=10, salto=2).
@@ -59,4 +64,9 @@ print("\n")
 # Ejemplo: si inicio = 3, fin = 10, y salto = 2
 # Se imprimiría: 4, 6, 8, 10
 
-
+inicio = 3
+fin = 10
+salto = 2
+for i in range(inicio, fin +1):
+    if i % salto == 0:
+        print(i)

@@ -6,6 +6,7 @@ usando ejemplos inspirados en videojuegos y situaciones atractivas.
 # 1. Generador de niveles
 # Imprime todos los niveles del 0 al 100 (incluyendo el 100).
 # (Tu código aquí)
+
 for i in range(101):
     print(i)
     
@@ -14,6 +15,7 @@ print("\n")
 # 2. Potenciadores de energía (Múltiplos de 2)
 # Imprime los números múltiplos de 2 desde 2 hasta 500 (incluyendo el 500).
 # (Tu código aquí)
+
 for i in range(251):
     i *= 2
     print(i)
@@ -26,6 +28,7 @@ print("\n")
 # - Si es divisible por 10, imprime ""
 # ¡Cuidado con la prioridad en tus condicionales!
 # (Tu código aquí)
+
 punt = 1
 for punt in range(5, 100):
     if punt % 10 == 0:

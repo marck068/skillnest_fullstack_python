@@ -28,6 +28,11 @@ print(frase) #Imprime: Buenos días Python
 #crear una funcion que reciba dos parametro(una frase + una palabra)
 #Devolver el valor de la frase completa e imprimir
 
-def devolver_frase(frase, palabra):
-   print(f"{frase} \n  - {palabra}")
-devolver_frase("¿Que Lenguaje de programación es de tu preferencia?","Python")
+def construirFrase(frase, palabra):
+   return f"{frase} \n  - {palabra}"
+
+def recibirFrase():
+   frase = input("Ingrese una frase")
+   palabra = input("Ingrese una palabra")
+   resultadoFrase = construirFrase(frase, palabra)
+   print(resultadoFrase)

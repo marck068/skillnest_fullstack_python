@@ -8,13 +8,27 @@ def total_logros_desbloqueados():
 
 print(total_logros_desbloqueados())
 
+# Variables | Valores
+#
+# salida: 7
+
 
 # 2. Función que indica la cantidad de mensajes enviados en un grupo de chat de tu juego online.
 def mensajes_en_chat():
     return 2450
 
+# Variables | Valores
+#
+# salida: 2450
+
+
 # 3. Intentamos sumar el resultado de una función que no existe al de 'mensajes_en_chat'.
     print(cantidad_de_dias_en_el_anio() + mensajes_en_chat())
+
+# Variables | Valores
+#
+# salida: 
+# No imprime nada
 
 
 # Función que podría retornar la temporada en que alcanzaste un rango especial en un MOBA (por ejemplo, 2022 o 2021).
@@ -23,6 +37,10 @@ def temporada_rango_especial():
     return 2021  # ¿Se llega a ejecutar esta línea?
 
 print(temporada_rango_especial())
+
+# Variables | Valores
+#
+# salida: 
 
 
 # 4. Cantidad de listas de reproducción que sigues en una plataforma de música.
@@ -33,6 +51,11 @@ def total_playlists():
 
 print(total_playlists())
 
+# Variables | Valores
+#
+# salida: 12
+# El print genera error ya que no esta accesible estructuralmente
+
 
 # 5. Función que muestra el número de episodios vistos de tu serie favorita,
 # pero únicamente imprime su valor, sin retornarlo.
@@ -42,6 +65,11 @@ def episodios_serie_favorita():
 x = episodios_serie_favorita()
 print(x)
 
+# Variables | Valores
+# X         | None
+# salida: 24
+# X no imprime nada, ya que la funcion no tiene valor de retorno.
+
 
 # 6. Función que "suma" los puntos obtenidos al compartir y al dar 'like' en una red social.
 # Pero la función utiliza print en lugar de return. ¿Cómo afecta eso si queremos combinar los resultados?
@@ -50,12 +78,23 @@ def suma_puntos(a, b):
 
 print(suma_puntos(10, 5) + suma_puntos(4, 3))
 
+# Variables | Valores
+# a         | 10 - 4
+# b         | 5 - 3
+# salida: 15, 7
+# La función  genera error ya que no tiene return.
+
 
 # 7. Función para concatenar dos "tags" de redes sociales, aunque se concatenan en orden inverso.
 def combinar_tags(tag1, tag2):
     return str(tag2) + str(tag1)
 
 print(combinar_tags("#Verano", "#Diversión"))
+
+# Variables | Valores
+# tag1      | #Verano
+# tag2      | #Diversión
+# salida: DiversiónVerano
 
 
 # 8. Supongamos que 'a' representa el conteo de reproducciones de un video viral.
@@ -71,6 +110,11 @@ def conteo_reproducciones_video():
 
 print(conteo_reproducciones_video())
 
+# Variables | Valores
+# a         | 560000
+# salida: 560000 , 46
+# El tercer "return" no se alcanza a ejecutar, porque esta afuera de las condicionales.
+
 
 # 9. Duración de una suscripción premium: 365 días (si se cumplen ciertas condiciones) o 12 meses.
 # El tercer 'return' (52 semanas) está después del else. ¿Lo veremos?
@@ -85,6 +129,12 @@ print(duracion_suscripcion(1, 3))
 print(duracion_suscripcion(7, 4))
 print(duracion_suscripcion(7, 4) + duracion_suscripcion(1, 3))
 
+# Variables | Valores
+# a         | 1, 7, 1
+# b         | 3, 4, 3
+# salida: 365, 12, 377
+# El tercer "return" no se alcanza a ejecutar
+
 
 # 10. Suma de propinas que recibes en un juego de simulación (p.ej. "Cafetería Virtual").
 # Nota que hay dos return, pero el segundo no se ejecuta nunca.
@@ -93,6 +143,12 @@ def suma_propinas(a, b):
     return 157
 
 print(suma_propinas(3, 4))
+
+# Variables | Valores
+# a         | 3
+# b         | 4
+# salida: 7
+# El segundo "return" no se ejecuta porque el de arriba rompe la función devolviendo un valor
 
 
 # 11. Variable global que cuenta cuántas horas de juego llevas en total.
@@ -107,6 +163,10 @@ def mostrar_horas_local():
 print(horas_de_juego)
 mostrar_horas_local()
 print(horas_de_juego)
+
+# Variables | Valores
+# horas_de_juego | 150 - 350
+# salida: 150, 150, 350, 150
 
 
 # 12. Similar al anterior, pero la función retorna el valor local 'horas_de_juego'.

@@ -12,7 +12,10 @@ multiplica_por_2(5)
 #Ejercicio 2
 # Analiza publicaciones
 def suma_y_resta():
-    suma_y_resta([120, 115])
+    print(f"{suma_y_resta[0]}")
+    return suma_y_resta[1]
+
+suma_y_resta([120, 115])
 # Imprime: 235 y retorna: 5
 
 

@@ -5,41 +5,41 @@ puntajes[1][0] = 600
 print(puntajes)
 
 #Ejercicio 2: Lista de creadores de contenido en una plataforma de streaming
-streamers = [
+streamer = [
    {"nombre": "GameNinjaPro", "seguidores": 250000},
    {"nombre": "PixelWarrior", "seguidores": 180000}
 ]
 
-streamers[0]["nombre"] = "EliteGamerX"
-print(streamers)
+streamer[0]["nombre"] = "EliteGamerX"
+print(streamer)
 
 
 #Ejercicio 3: Eventos en distintas ciudades del mundo
-eventos = {
+eventosP = {
    "Estados Unidos": ["Los Ángeles", "Nueva York", "Las Vegas"],
    "España": ["Madrid", "Barcelona", "Valencia"]
 }
 
-eventos["Estados Unidos"][2] = "San Francisco"
-print(eventos)
+eventosP["Estados Unidos"][2] = "San Francisco"
+print(eventosP)
 
 #Ejercicio 4: Coordenadas de la sede de un torneo internacional
-ubicacion = [
+ubi = [
    {"latitud": 34.052235, "longitud": -118.243683}
 ]
 
-ubicacion[0]["latitud"] = "40.712776"
-print(ubicacion)
+ubi[0]["latitud"] = "40.712776"
+print(ubi)
 
 #Ejercicio 5:
 
-def iterar_diccionario(lista):
+def iterar_dicci(lista):
    for i in lista:
       print(f"nombre - {i['nombre']}, seguidores - {i['seguidores']}")
 
-iterar_diccionario(streamers)
+iterar_dicci(streamer)
 
-obtener_valores = {
+obten_valor = {
       "nombre": [
          "EliteGamerX",
          "PixelWarrior",
@@ -49,18 +49,18 @@ obtener_valores = {
          "180000",
       ]
 }
-def iterar_diccionario(valores):
-   for clave, lista in valores.items():
-      print(f"{len(lista)} {clave.upper()}")
+def iterar_dicci(valor):
+   for llave, lista in valor.items():
+      print(f"{len(lista)} {llave.upper()}")
       for element in lista:
          print(element)
       print()
-iterar_diccionario(obtener_valores)
+iterar_dicci(obten_valor)
 
 
 #Ejercicio 6:
 
-categorias = {
+categoria = {
    "juegos_populares": [
       "Fortnite", 
       "Minecraft", 
@@ -74,10 +74,10 @@ categorias = {
    ]
 }
 
-def identar_diccionario(diccionario):
-   for clave, lista in diccionario.items():
-      print(f"{len(lista)} {clave.upper()}")
+def identar_diccio(diccionario):
+   for llavesita, lista in diccionario.items():
+      print(f"{len(lista)} {llavesita.upper()}")
       for element in lista:
          print(element)
       print()
-identar_diccionario(categorias)
+identar_diccio(categoria)

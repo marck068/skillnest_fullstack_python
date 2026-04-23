@@ -49,7 +49,6 @@ obtener_valores = {
          "180000",
       ]
 }
-
 def iterar_diccionario(valores):
    for clave, lista in valores.items():
       print(f"{len(lista)} {clave.upper()}")

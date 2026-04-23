@@ -48,25 +48,38 @@ def ejercicio3():
 # Ajusta visualizaciones
 def valores_multiplicados_segundo(lista):
     if len(lista) < 2:
-        
-# Imprime: 4 y retorna: [300, 9, 150, 60]
+        print(len(lista))
+        return[]
+    else:
+        segEle = lista[1]
+        nuevaLista = []
+        for i in lista:
+            nuevaLista.append(i * segEle)
+        long = len(nuevaLista)
+        print(long)
+        return nuevaLista
 
+# Imprime: 4 y retorna: [300, 9, 150, 60]
 def ejercicio4():
-    valores_multiplicados_segundo([100, 3, 50, 20])
-    valores_multiplicados_segundo([100])
+    result1 = valores_multiplicados_segundo([100, 3, 50, 20])
+    print(result1)
 # Imprime: 1 y retorna: []
 
 
 #Ejercicio 5
 # Genera precio fijo
-def valor_multiplicado_longitud():
-    valor_multiplicado_longitud(5, 2)
-# Debe retornar: [10, 10]
+def valor_multiplicado_longitud(a, b):
+    multlist = []
+    for i in range(0, b):
+        multlist.append(a * b)
+    return multlist
 
 def ejercicio5():
-    pass
-
-valor_multiplicado_longitud(7, 5)
+    result1 = valor_multiplicado_longitud(5, 2)
+    print(f"Resultado 1: {result1}")
+    # Debe retornar: [10, 10]
+    result2 = valor_multiplicado_longitud(7, 5)
+    print(f"Resultado 2: {result2}")
 # Debe retornar: [35, 35, 35, 35, 35]
 
 def limpiar_consola():

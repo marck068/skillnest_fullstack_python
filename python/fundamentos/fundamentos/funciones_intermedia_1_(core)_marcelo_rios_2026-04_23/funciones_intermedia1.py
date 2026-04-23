@@ -31,10 +31,35 @@ ubicacion = [
 ubicacion[0]["latitud"] = "40.712776"
 print(ubicacion)
 
-def iterar_diccionario(lista):
-   nombres = {"nombre": "GameNinjaPro", "nombre": "PixelWarrior"}
-   seguidores ={"seguidores": 250000, "seguidores": 180000}
+#Ejercicio 5:
 
+def iterar_diccionario(lista):
+   for i in lista:
+      print(f"nombre - {i['nombre']}, seguidores - {i['seguidores']}")
+
+iterar_diccionario(streamers)
+
+obtener_valores = {
+      "nombre": [
+         "EliteGamerX",
+         "PixelWarrior",
+      ],
+      "seguidores": [
+         "250000",
+         "180000",
+      ]
+}
+
+def iterar_diccionario(valores):
+   for clave, lista in valores.items():
+      print(f"{len(lista)} {clave.upper()}")
+      for element in lista:
+         print(element)
+      print()
+iterar_diccionario(obtener_valores)
+
+
+#Ejercicio 6:
 
 categorias = {
    "juegos_populares": [
@@ -49,3 +74,11 @@ categorias = {
       "Tokio",
    ]
 }
+
+def identar_diccionario(diccionario):
+   for clave, lista in diccionario.items():
+      print(f"{len(lista)} {clave.upper()}")
+      for element in lista:
+         print(element)
+      print()
+identar_diccionario(categorias)

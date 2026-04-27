@@ -43,6 +43,6 @@ marcelo = Estudiante("23.009.064-5", "Marcelo", "Ríos", "Programación", 2/5/20
 yoycer = Estudiante("28.981.636-4", "Yoycer", "Garcia", "Programación", 11/10/2007)
 daniel = Estudiante("28.493.693-0", "Daniel", "Jimenez", "Programación", 16/1/2009)
 
-print(marcelo.nombre + " " + marcelo.apellido + ": " + marcelo.especialidad)
-print(yoycer.nombre + " " + yoycer.apellido + ": " + yoycer.especialidad)
-print(daniel.nombre + " " + daniel.apellido + ": " + daniel.especialidad)
+print(marcelo.nombre + " " + marcelo.apellido + " Especialidad: " + marcelo.especialidad)
+print(yoycer.nombre + " " + yoycer.apellido + " Especialidad: " + yoycer.especialidad)
+print(daniel.nombre + " " + daniel.apellido + " Especialidad: " + daniel.especialidad)

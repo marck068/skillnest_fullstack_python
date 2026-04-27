@@ -11,6 +11,9 @@ class Usuario:
 
     def aumentarCredito(self, aumento):
         self.limite_credito += aumento
+        
+    def cambiarCorreo(self, correo):
+        self.email = correo
 
 
 miyagi = Usuario("Nariyoshi", "Miyagi", "miyagi@codingdojo.la")
@@ -43,7 +46,7 @@ Imprimir el nuevo límite de crédito.
 Mostrar el nuevo correo.
 '''
 marcelo.aumentarCredito(800)
-
+print(f"El nuevo de crédito es: {marcelo.limite_credito}")
 
 
 

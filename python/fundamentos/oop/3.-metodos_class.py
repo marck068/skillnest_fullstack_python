@@ -48,7 +48,8 @@ Mostrar el nuevo correo.
 marcelo.aumentarCredito(800)
 print(f"El nuevo de crédito es: {marcelo.limite_credito}")
 
-
+marcelo.cambiarCorreo("marck069@gmail.com")
+print(f"El nuevo correo establecido es: {marcelo.email}")
 
 '''
 daniel.hacer_compra(45)

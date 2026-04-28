@@ -64,5 +64,20 @@ class UsuarioStreaming:
 # (Menú de selección)
 
 usser1 = UsuarioStreaming("usuario-N1", "user1@gmail.com")
+usser1.agregar_a_lista("La casa de papel")
+usser1.cambiar_suscripcion("premium")
+usser1.ver_contenido("La casa de papel")
+usser1.mostrar_info_usuario()
+
+
 usser2 = UsuarioStreaming("usuario-N2", "user2@gmail.com")
+usser2.agregar_a_lista("sherk")
+usser2.cambiar_suscripcion("estandar")
+usser2.ver_contenido("sherk")
+usser2.mostrar_info_usuario()
+
 usser3 = UsuarioStreaming("usuario-N3", "user3@gmail.com")
+usser3.agregar_a_lista("")
+usser3.cambiar_suscripcion("")
+usser3.ver_contenido("")
+usser3.mostrar_info_usuario()

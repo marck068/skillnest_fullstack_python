@@ -39,15 +39,18 @@ print(f"Credito disponible: ${daniel.limite_credito - daniel.saldo_pagar}")
 print(daniel.saldo_pagar)
 
 '''
-1.- Crear un nuevo método que permita aumentar el límite de crédito.
+#1.- Crear un nuevo método que permita aumentar el límite de crédito.
 Imprimir el nuevo límite de crédito.
 
-2.- Crear un método que permita cambiar el correo de la instancia.
+#2.- Crear un método que permita cambiar el correo de la instancia.
 Mostrar el nuevo correo.
 '''
+
+#1
 marcelo.aumentarCredito(800)
 print(f"El nuevo de crédito es: {marcelo.limite_credito}")
 
+#2
 marcelo.cambiarCorreo("marck069@gmail.com")
 print(f"El nuevo correo establecido es: {marcelo.email}")
 

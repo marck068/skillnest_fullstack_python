@@ -20,35 +20,63 @@ El programa deberá incluir una opción para salir correctamente del sistema.
 #Su programa deberá considerar las siguientes funciones:
 
 # 1.-Crear una función que reciba una lista de números enteros y muestre cuál es el número mayor y cuál es el menor.
-def numeroMayorMenor(listado):
-    menor = min(listado)
-    mayor = max(listado)
-    print(f"El número mayor es: {mayor}\nEl número menor es: {menor}")
-
+def numeroMayorMenor(lista):
+    menor = min(lista)
+    mayor = max(lista)
+    print(f"El número mayor es {mayor}nEl número menor es: {menor}")
 def ejercicio1():
-    limit = int(input("Ingresa un limite de valores: "))
-    listadoNum = []
-    i = 1
+    limit = int(input("Ingresa un límite de valores: "))
+    listaNum = []
+    i = i
     while i <= limit:
-        num = input(f"Ingresa un número entero {i} de {limit} : ")
-        listadoNum.append(num)
+        num = input("Ingresa un numero entero o decimal (con punto): ")
+        listaNum.append(num)
         i+=1
-    numeroMayorMenor(listadoNum)
+    numeroMayorMenor(listaNum)       
 
 # 2.-Crear una función que reciba una cadena de texto y cuente cuántas vocales contiene.
-def contador_vocal(letra):
+def es_vocal(letra):
     vocales = "aeiouAEIOU"
     return letra in vocales
+
 
 def contar_vocales(texto):
     contador = 0
 
     for letra in texto:
         if es_vocal(letra):
+            contador += 1
+
+    print(f"La cadena contiene {contador} vocales.")
+
+
+def ejercicio_contar_vocales():
+    texto = input("Ingrese una cadena de texto: ")
+    contar_vocales(texto)
 
 # 3.-Crear una función que reciba una lista de nombres y muestre únicamente aquellos que tengan más de 5 letras.
+def filtrar(lista):
+    resultado = []
+    for nombre in lista:
+        if len(nombre) > 5:
+            resultado.append(nombre)
+    return resultado
 
-
+def mostrar():
+    nombres = []
+    
+    cantidad = int(input("¿Cuántos nombres quieres ingresar? "))
+    
+    for i in range(cantidad):
+        nombre = input("Ingresa un nombre: ")
+        print(f"{nombre} agregado con exito a la lista.")
+        nombres.append(nombre)
+        
+    for nombre in filtrar(nombres):
+        print("Los nombres con más de 5 letras son: ")
+        print(nombre)
+        
+mostrar()
 
 # 4.-Crear una función que reciba una lista de notas (números decimales), calcule el promedio e indique si el
 #estudiante aprueba (promedio mayor o igual a 4.0).

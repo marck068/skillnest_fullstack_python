@@ -32,7 +32,7 @@ def ejercicio1():
         num = input("Ingresa un numero entero o decimal (con punto): ")
         listaNum.append(num)
         i+=1
-    numeroMayorMenor(listaNum)       
+    numeroMayorMenor(listaNum)
 
 # 2.-Crear una función que reciba una cadena de texto y cuente cuántas vocales contiene.
 def es_vocal(letra):
@@ -64,18 +64,14 @@ def filtrar(lista):
 
 def mostrar():
     nombres = []
-    
     cantidad = int(input("¿Cuántos nombres quieres ingresar? "))
-    
     for i in range(cantidad):
         nombre = input("Ingresa un nombre: ")
         print(f"{nombre} agregado con exito a la lista.")
         nombres.append(nombre)
-        
     for nombre in filtrar(nombres):
         print("Los nombres con más de 5 letras son: ")
         print(nombre)
-        
 mostrar()
 
 # 4.-Crear una función que reciba una lista de notas (números decimales), calcule el promedio e indique si el

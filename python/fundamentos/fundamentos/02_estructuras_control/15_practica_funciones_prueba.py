@@ -83,13 +83,27 @@ def listaNotas(notas):
         lista += notas[i]
         if notas[i] >= 4.0 and notas[i] <= 7.0:
             print(f"El estudiante {i + 1} pasa con un {notas[i]}")
-        elif 
+        
             pass
 
 
 # 5.-Crear una función que reciba una lista de precios de productos y aplique un descuento del 10%, mostrando el
 #valor original y el nuevo valor.
+def descuento(valor):
+    sumaLista = sum(valor)
+    precioInicial = sumaLista
+    descuento = sumaLista * 0.1
+    precioFinal = precioInicial - descuento
+    print(f"El precio inicial del producto es: \n{precioInicial}\ny con descuento \n{precioFinal}")
 
+def valores():
+    cantidadProductos = int(input("Ingrese la cantidad de productos que quiera: \n"))
+    listaPrecios = []
+    for i in range(cantidadProductos):
+        valorProducto = float(input("Ingrese el valor del producto:\n"))
+        listaPrecios.append(valorProducto)
+    descuento(listaPrecios)
+valores()
 
 
 # 6.-Crear una función que reciba un número entero y determine si es par o impar.

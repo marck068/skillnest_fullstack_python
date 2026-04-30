@@ -70,13 +70,21 @@ def mostrar():
         print(f"{nombre} agregado con exito a la lista.")
         nombres.append(nombre)
     for nombre in filtrar(nombres):
-        print("Los nombres con más de 5 letras son: ")
-        print(nombre)
+        listaNombres = filtrar(nombres)
+    print(f"Los nombres con más de 5 letras son: \n- {("\n- ").join(listaNombres)}")
+
 mostrar()
 
 # 4.-Crear una función que reciba una lista de notas (números decimales), calcule el promedio e indique si el
 #estudiante aprueba (promedio mayor o igual a 4.0).
-
+def listaNotas(notas):
+    lista = 0
+    for i in range(len(notas)):
+        lista += notas[i]
+        if notas[i] >= 4.0 and notas[i] <= 7.0:
+            print(f"El estudiante {i + 1} pasa con un {notas[i]}")
+        elif 
+            pass
 
 
 # 5.-Crear una función que reciba una lista de precios de productos y aplique un descuento del 10%, mostrando el

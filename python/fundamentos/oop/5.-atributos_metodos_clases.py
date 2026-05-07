@@ -52,6 +52,26 @@ print()
 e2.mostrar_info()
 print()
 
+#Usar Atributo de clase
+print("== MÉTODO DE INSTANCIA==")
+print(e1.colegio)
+print(e2.colegio)
+print()
+
+#Uso de método de clase
+print("== MÉTODO DE CLASE ==")
+
+Estudiante.cambiar_colegio("Purkuyen")
+print(e1.coleio)
+print(e2.colegio)
+print
+
+#Contar Estudiantes
+print("== CONTAR ESTUDIANTES ==")
+print(f"Total estudiantes: {Estudiante.cantidad_estudiantes()}")
+
+#Método estático 
+print("=== MÉTODO ESTÁTICO ===")
 
 ## Función repaso.
 ## Crear una función que valide usuario y contraseña

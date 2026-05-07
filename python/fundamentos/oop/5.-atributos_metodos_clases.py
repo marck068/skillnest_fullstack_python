@@ -13,13 +13,44 @@ class Estudiante:
         self.nombre = nombre
         self.nota = nota
         
-        #Agregar elementos a la lista Estudiante
+        #Agregar elementos a la lista Estudiante (objeto)
         Estudiante.estudiantes.append(self)
         
     #Método de instancia
     def mostrar_info(self):
         print(f"Nombre: {self.nombre}")
         print(f"Nota: {self.nota}")
+        
+    #Método de CLASE
+    # Usa "CLS" porque trabaja con la información de la clase
+    @classmethod
+    def cambiar_colegio(cls, nuevo_nombre):
+        cls.colegio = nuevo_nombre
+        
+    @classmethod #Contar la cantidad de estudiantes existentes
+    def cantidad_estudiantes(cls):
+        return len(cls.estudiantes)
+
+    #Método estático
+    #Este no usa CLS ni SELF, solo parámetros.
+    @staticmethod
+    def aprobar(nota):
+        if nota >= 4.0:
+            return True
+        else:
+            return False
+        
+#Creación de objetos (Instancias)
+e1 = Estudiante("Daniel", 4.0)
+e2 = Estudiante("Randy", 6.7)
+
+#Uso de métodos de instancia
+print("== MÉTODO DE INSTANCIA==")
+#Mostrar datos de estudiantes
+e1.mostrar_info()
+print()
+e2.mostrar_info()
+print()
 
 
 ## Función repaso.

@@ -26,13 +26,15 @@ def numeroMayorMenor(lista):
     print(f"El número mayor es {mayor}nEl número menor es: {menor}")
 def ejercicio1():
     limit = int(input("Ingresa un límite de valores: "))
-    listaNum = []
+    listaNum = []   
     i = i
     while i <= limit:
         num = input("Ingresa un numero entero o decimal (con punto): ")
         listaNum.append(num)
         i+=1
     numeroMayorMenor(listaNum)
+
+ejercicio1()
 
 # 2.-Crear una función que reciba una cadena de texto y cuente cuántas vocales contiene.
 def es_vocal(letra):

@@ -1,8 +1,7 @@
 #Atributos, métodos de clase, métodos estáticos
 
-#DEFINICIÓN DE LA CLASE
+#DEFINICION DE LA CLASE
 class SuscripcionStreaming:
-    
     #Atributo de clase
     costos_suscripcion = {
         "Gratis": 0,
@@ -10,77 +9,72 @@ class SuscripcionStreaming:
         "Premium": 10.99
     }
 
-    #Lista con todas las suscripciones
+    #Lista en donde esten todas las suscripciones
     suscripciones = []
 
-    #Método constructor
+    #Método CONSTRUCTOR
     def __init__(self, usuario, tipo_suscripcion="Gratis"):
-        
         #Atributos de instancia
         self.usuario = usuario
         self.tipo_suscripcion = tipo_suscripcion
         self.costo_mensual = SuscripcionStreaming.costos_suscripcion[tipo_suscripcion]
         self.saldo_pendiente = self.costo_mensual
 
-        #Agregar objeto a la lista
+        #Agregar elementos a la lista SuscripcionStreaming (objeto)
         SuscripcionStreaming.suscripciones.append(self)
 
     #Método de instancia
     def realizar_pago(self, monto):
         """Reduce el saldo pendiente según el monto pagado."""
-        
-        self.saldo_pendiente -= monto
+        self.saldo_pendiente = self.saldo_pendiente - monto
 
-        if self.saldo_pendiente < 0:
-            self.saldo_pendiente = 0
-
-        print(f"Pago realizado por {self.usuario}")
-        print(f"Saldo pendiente: ${self.saldo_pendiente}")
+        print(f"Pago realizado por: {self.usuario}")
+        print(f"Saldo pendiente: {self.saldo_pendiente}")
 
     #Método de instancia
     def cambiar_suscripcion(self, nuevo_tipo):
         """Cambia el tipo de suscripción y actualiza el costo mensual."""
-        
         self.tipo_suscripcion = nuevo_tipo
         self.costo_mensual = SuscripcionStreaming.costos_suscripcion[nuevo_tipo]
         self.saldo_pendiente = self.costo_mensual
 
-        print(f"{self.usuario} cambió su suscripción a {nuevo_tipo}")
+        print(f"Nueva suscripción: {self.tipo_suscripcion}")
 
     #Método estático
+    #Este no usa CLS ni SELF, solo parámetros.
     @staticmethod
     def ver_contenido_exclusivo(tipo_suscripcion):
         """Permite ver contenido exclusivo según el tipo de suscripción."""
-
         if tipo_suscripcion == "Premium":
-            print("Puede ver películas y series exclusivas.")
+            print("Acceso a contenido exclusivo Premium")
         elif tipo_suscripcion == "Estándar":
-            print("Puede ver contenido estándar.")
+            print("Acceso a contenido estándar")
         else:
-            print("No tiene acceso a contenido exclusivo.")
+            print("No tiene acceso a contenido exclusivo")
 
     #Método de instancia
     def mostrar_info_suscripcion(self):
         """Muestra la información de la suscripción del usuario."""
-
         print(f"Usuario: {self.usuario}")
-        print(f"Tipo Suscripción: {self.tipo_suscripcion}")
-        print(f"Costo Mensual: ${self.costo_mensual}")
-        print(f"Saldo Pendiente: ${self.saldo_pendiente}")
+        print(f"Tipo de suscripción: {self.tipo_suscripcion}")
+        print(f"Costo mensual: {self.costo_mensual}")
+        print(f"Saldo pendiente: {self.saldo_pendiente}")
 
-    #Método de clase
+    #Método de CLASE
+    # Usa "CLS" porque trabaja con la información de la clase
     @classmethod
     def cantidad_suscripciones(cls):
         return len(cls.suscripciones)
 
+#Creación de objetos (Instancias)
+s1 = SuscripcionStreaming("Daniel")
+s2 = SuscripcionStreaming("Randy", "Estándar")
+s3 = SuscripcionStreaming("Yoycer", "Premium")
 
-#Creación de objetos
-s1 = SuscripcionStreaming("Matias")
-s2 = SuscripcionStreaming("Daniel", "Estándar")
-s3 = SuscripcionStreaming("Randy", "Premium")
+#Uso de métodos de instancia
+print("== MÉTODO DE INSTANCIA==")
 
-#Mostrar información
-print("=== INFORMACIÓN SUSCRIPCIONES ===")
+#Mostrar datos de suscripciones
 s1.mostrar_info_suscripcion()
 print()
 
@@ -90,21 +84,24 @@ print()
 s3.mostrar_info_suscripcion()
 print()
 
-#Realizar pagos
-print("=== PAGOS ===")
+#Uso de método de instancia
+print("== REALIZAR PAGOS ==")
+
 s2.realizar_pago(3)
 print()
 
 s3.realizar_pago(5)
 print()
 
-#Cambiar suscripción
-print("=== CAMBIAR SUSCRIPCIÓN ===")
+#Uso de método de instancia
+print("== CAMBIAR SUSCRIPCIÓN ==")
+
 s1.cambiar_suscripcion("Premium")
 print()
 
-#Ver contenido exclusivo
-print("=== CONTENIDO EXCLUSIVO ===")
+#Método estático
+print("=== MÉTODO ESTÁTICO ===")
+
 SuscripcionStreaming.ver_contenido_exclusivo(s1.tipo_suscripcion)
 print()
 
@@ -114,6 +111,7 @@ print()
 SuscripcionStreaming.ver_contenido_exclusivo(s3.tipo_suscripcion)
 print()
 
-#Cantidad de suscripciones
-print("=== TOTAL SUSCRIPCIONES ===")
-print(f"Total: {SuscripcionStreaming.cantidad_suscripciones()}")
+#Contar suscripciones
+print("== CONTAR SUSCRIPCIONES ==")
+
+print(f"Total suscripciones: {SuscripcionStreaming.cantidad_suscripciones()}")

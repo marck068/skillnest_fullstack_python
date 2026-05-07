@@ -62,7 +62,8 @@ print()
 print("== MÉTODO DE CLASE ==")
 
 Estudiante.cambiar_colegio("Purkuyen")
-print(e1.coleio)
+e1.colegio = "VVH" #Modifica el atributo de la instancia en la clase
+print(e1.colegio)
 print(e2.colegio)
 print
 
@@ -72,6 +73,15 @@ print(f"Total estudiantes: {Estudiante.cantidad_estudiantes()}")
 
 #Método estático 
 print("=== MÉTODO ESTÁTICO ===")
+
+print(f"¿{e1.nombre} Aprueba?")
+print(Estudiante.aprobar(e1.nota))
+print()
+
+print(f"¿{e2.nombre} Aprueba?")
+print(Estudiante.aprobar(e2.nota))
+print()
+
 
 ## Función repaso.
 ## Crear una función que valide usuario y contraseña

@@ -3,91 +3,57 @@
 class SuscripcionStreaming:
     costos_suscripcion = {"Gratis": 0, "Estándar": 5.99, "Premium": 10.99}
 
-    suscripciones = []
-
     def __init__(self, usuario, tipo_suscripcion="Gratis"):
         self.usuario = usuario
         self.tipo_suscripcion = tipo_suscripcion
-        self.costo_mensual = SuscripcionStreaming.costos_suscripcion[tipo_suscripcion]
+        self.costo_mensual = self.costos_suscripcion[tipo_suscripcion]
         self.saldo_pendiente = self.costo_mensual
-
-        SuscripcionStreaming.suscripciones.append(self)
 
     def realizar_pago(self, monto):
-        """Reduce el saldo pendiente según el monto pagado."""
-        self.saldo_pendiente = self.saldo_pendiente - monto
-
-        print(f"Pago realizado por: {self.usuario}")
-        print(f"Saldo pendiente: {self.saldo_pendiente}")
+        self.saldo_pendiente -= monto
+        print(f"{self.usuario} pagó ${monto}. Saldo restante: ${self.saldo_pendiente}")
 
     def cambiar_suscripcion(self, nuevo_tipo):
-        """Cambia el tipo de suscripción y actualiza el costo mensual."""
-        self.tipo_suscripcion = nuevo_tipo
-        self.costo_mensual = SuscripcionStreaming.costos_suscripcion[nuevo_tipo]
-        self.saldo_pendiente = self.costo_mensual
-
-        print(f"Nueva suscripción: {self.tipo_suscripcion}")
-
-    @staticmethod
-    def ver_contenido_exclusivo(tipo_suscripcion):
-        """Permite ver contenido exclusivo según el tipo de suscripción."""
-        if tipo_suscripcion == "Premium":
-            print("Acceso a contenido exclusivo Premium")
-        elif tipo_suscripcion == "Estándar":
-            print("Acceso a contenido estándar")
+        if nuevo_tipo in self.costos_suscripcion:
+            self.tipo_suscripcion = nuevo_tipo
+            self.costo_mensual = self.costos_suscripcion[nuevo_tipo]
+            self.saldo_pendiente += self.costo_mensual
+            print(f"{self.usuario} cambió a {nuevo_tipo}")
         else:
-            print("No tiene acceso a contenido exclusivo")
+            print(f"Error: '{nuevo_tipo}' no es un plan válido.")
+
+    def ver_contenido_exclusivo(self):
+        if self.tipo_suscripcion == "Gratis":
+            print(f"{self.usuario}: Sin acceso. El plan Gratis no tiene contenido exclusivo.")
+        else:
+            print(f"{self.usuario}: Viendo contenido exclusivo.")
 
     def mostrar_info_suscripcion(self):
-        """Muestra la información de la suscripción del usuario."""
-        print(f"Usuario: {self.usuario}")
-        print(f"Tipo de suscripción: {self.tipo_suscripcion}")
-        print(f"Costo mensual: {self.costo_mensual}")
-        print(f"Saldo pendiente: {self.saldo_pendiente}")
+        print(f"[{self.usuario}] Plan: {self.tipo_suscripcion} | Deuda total: ${self.saldo_pendiente:.2f}")
 
-    @classmethod
-    def cantidad_suscripciones(cls):
-        return len(cls.suscripciones)
-
-s1 = SuscripcionStreaming("Daniel")
+s1 = SuscripcionStreaming("Daniel", "Gratis")
 s2 = SuscripcionStreaming("Randy", "Estándar")
 s3 = SuscripcionStreaming("Yoycer", "Premium")
 
-print("== MÉTODO DE INSTANCIA==")
+print("\n--- Pruebas Usuario 1 (Intenta ver, mejora, paga) ---")
 
+s1.ver_contenido_exclusivo()
+s1.cambiar_suscripcion("Estándar")
+s1.realizar_pago(5.99)
+
+print("\n--- Pruebas Usuario 2 (Ve, mejora, paga 2 veces) ---")
+
+s2.ver_contenido_exclusivo()
+s2.cambiar_suscripcion("Premium")
+s2.realizar_pago(10.00)
+s2.realizar_pago(6.98)
+
+print("\n--- Pruebas Usuario 3 (Paga menos, ve contenido) ---")
+
+s3.realizar_pago(5.00)
+s3.ver_contenido_exclusivo()
+
+print("\n--- Resumen Final ---")
 s1.mostrar_info_suscripcion()
-print()
-
 s2.mostrar_info_suscripcion()
-print()
-
 s3.mostrar_info_suscripcion()
-print()
-
-print("== REALIZAR PAGOS ==")
-
-s2.realizar_pago(3)
-print()
-
-s3.realizar_pago(5)
-print()
-
-print("== CAMBIAR SUSCRIPCIÓN ==")
-
-s1.cambiar_suscripcion("Premium")
-print()
-
-print("=== MÉTODO ESTÁTICO ===")
-
-SuscripcionStreaming.ver_contenido_exclusivo(s1.tipo_suscripcion)
-print()
-
-SuscripcionStreaming.ver_contenido_exclusivo(s2.tipo_suscripcion)
-print()
-
-SuscripcionStreaming.ver_contenido_exclusivo(s3.tipo_suscripcion)
-print()
-
-print("== CONTAR SUSCRIPCIONES ==")
-
-print(f"Total suscripciones: {SuscripcionStreaming.cantidad_suscripciones()}")

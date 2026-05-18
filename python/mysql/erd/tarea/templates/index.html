@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="Author" content="marcelorios@liceovvh.cl">
     <title>Inicio de Sesión</title>
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
     <main class="page-shell" aria-label="Pagina de inicio de sesion y registro">
         <section class="forms-panel" aria-label="Acceso de usuarios">
-            <form class="auth-form login-card" action="/login" method="post" id="loginForm">
+            <form class="auth-form login-card" action="{{ url_for('login') }}" method="post" id="loginForm">
                 <h1>Inicio de Sesión</h1>
 
                 <label>
@@ -28,7 +28,7 @@
                 <button class="submit-button" type="submit">Iniciar Sesión</button>
             </form>
 
-            <form class="auth-form register-card" action="/register" method="post" id="registerForm">
+            <form class="auth-form register-card" action="{{ url_for('register') }}" method="post" id="registerForm">
                 <h2>Registro</h2>
 
                 <label>
@@ -55,10 +55,16 @@
             </form>
         </section>
 
-        <div class="status-message" id="statusMessage" role="status" aria-live="polite"></div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="status-message" role="status" aria-live="polite">
+            {% for category, message in messages %}
+                <p class="flash {{ category }}">{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
     </main>
-
-    <script src="static/js/script.js"></script>
 </body>
 
 </html>

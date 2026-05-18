@@ -1,0 +1,275 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #fff;
+    color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+.page-shell {
+    width: min(960px, calc(100vw - 48px));
+    margin: 56px auto 0;
+}
+
+.page-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.header-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.nav-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 3px solid #000;
+    background: #fff;
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.panel-card {
+    display: grid;
+    gap: 24px;
+}
+
+.panel-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.user-table th,
+.user-table td {
+    border: 3px solid #000;
+    padding: 14px 12px;
+}
+
+.user-table th {
+    background: #e6e6e6;
+    text-align: left;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.inline-delete {
+    display: inline-block;
+    margin: 0;
+}
+
+.inline-delete .action-button {
+    border: none;
+    padding: 6px 10px;
+}
+
+.action-button,
+.action-button:visited {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    min-height: 36px;
+    padding: 0 12px;
+    border: 3px solid #000;
+    background: #fff;
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.note-card {
+    padding: 18px;
+    border: 3px solid #000;
+    background: #fcfcfc;
+}
+
+.message-list {
+    display: grid;
+    gap: 18px;
+}
+
+.message-item {
+    border: 3px solid #000;
+    padding: 16px;
+    background: #fff;
+}
+
+.message-item a {
+    color: #0366d6;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.flash {
+    margin: 0;
+    padding: 6px 10px;
+}
+
+.flash.success {
+    color: #1f7a1f;
+}
+
+.flash.error {
+    color: #a40f0f;
+}
+
+.inline-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.quick-links {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin: 8px 0 24px;
+}
+
+@media (max-width: 600px) {
+    .page-header {
+        margin-bottom: 20px;
+    }
+
+    .action-button,
+    .nav-button {
+        width: auto;
+        min-width: 0;
+        padding: 8px 12px;
+    }
+}
+
+.forms-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 120px;
+    align-items: start;
+    justify-content: center;
+}
+
+.auth-form h1,
+.auth-form h2 {
+    margin: 0 0 28px;
+    font-size: 36px;
+    line-height: 1;
+}
+
+.auth-form {
+    display: grid;
+    gap: 14px;
+    width: 360px;
+}
+
+.auth-form label {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    align-items: center;
+    gap: 18px;
+    color: #000;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.register-card label {
+    grid-template-columns: 150px 1fr;
+}
+
+.auth-form input {
+    width: 100%;
+    height: 40px;
+    padding: 4px 8px;
+    border: 3px solid #000;
+    border-radius: 0;
+    background: #fff;
+    color: #000;
+    outline: none;
+}
+
+.submit-button {
+    width: max-content;
+    min-height: 36px;
+    justify-self: center;
+    margin-top: 8px;
+    padding: 5px 18px;
+    border: 3px solid #000;
+    border-radius: 0;
+    background: #fff;
+    color: #000;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.status-message {
+    min-height: 22px;
+    margin-top: 28px;
+    color: #000;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .page-shell {
+        width: calc(100vw - 32px);
+        margin-top: 32px;
+    }
+
+    .forms-panel {
+        grid-template-columns: 1fr;
+        row-gap: 48px;
+        justify-items: stretch;
+    }
+
+    .auth-form {
+        width: 100%;
+    }
+
+    .auth-form h1,
+    .auth-form h2 {
+        font-size: 30px;
+    }
+
+    .auth-form label,
+    .register-card label {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Author" content="marcelorios@liceovvh.cl">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <main class="page-shell" aria-label="Dashboard de usuario">
+        <header class="page-header">
+            <span class="page-title">Dashboard</span>
+            <a href="{{ url_for('logout') }}" class="nav-button">Salir</a>
+        </header>
+
+        <section class="panel-card">
+            <div class="panel-actions">
+                <h1>Bienvenido, {{ user_name }}</h1>
+            </div>
+
+            <table class="user-table" aria-label="Lista de usuarios">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>E-mail</th>
+                        <th>Tipo Usuario</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.nombre }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.tipo_usuario }}</td>
+                        <td class="action-buttons">
+                            <span class="action-button">✉</span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="note-card">
+                Los usuarios solo pueden ingresar aquí después de iniciar sesión.
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

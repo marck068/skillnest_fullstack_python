@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Author" content="marcelorios@liceovvh.cl">
+    <title>Dashboard Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <main class="page-shell" aria-label="Dashboard de administración">
+        <header class="page-header">
+            <span class="page-title">Dashboard - Admin</span>
+            <div class="header-actions">
+                <a href="{{ url_for('new_user') }}" class="action-button">Nuevo Usuario</a>
+                <a href="{{ url_for('logout') }}" class="nav-button">Salir</a>
+            </div>
+        </header>
+
+        <section class="panel-card">
+            <div class="panel-actions">
+                <h1>Usuarios</h1>
+            </div>
+
+            <table class="user-table" aria-label="Lista de usuarios">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>E-mail</th>
+                        <th>Tipo Usuario</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.nombre }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.tipo_usuario }}</td>
+                        <td class="action-buttons">
+                            <a href="{{ url_for('edit_user', user_id=user.id) }}" class="action-button">✎</a>
+                            <form action="{{ url_for('delete_user', user_id=user.id) }}" method="post" class="inline-delete">
+                                <button type="submit" class="action-button">🗑</button>
+                            </form>
+                            <span class="action-button">✉</span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="note-card">
+                Los administradores pueden crear, editar y borrar usuarios.
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

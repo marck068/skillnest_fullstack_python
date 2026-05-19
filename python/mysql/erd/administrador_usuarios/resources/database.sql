@@ -8,26 +8,26 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema sistema_mensajes
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema sistema_mensajes
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `sistema_mensajes` DEFAULT CHARACTER SET utf8 ;
+USE `sistema_mensajes` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`roles`
+-- Table `sistema_mensajes`.`roles`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`roles` (
+CREATE TABLE IF NOT EXISTS `sistema_mensajes`.`roles` (
   `id_rol` INT NOT NULL AUTO_INCREMENT,
   `nombre_rol` VARCHAR(50) NOT NULL,
   `descripcion_rol` VARCHAR(300) NOT NULL,
   `created_at` DATETIME NULL CURRENT_TIMESTAMP, --CURRENT_TIMESTAMP: Valor fecha y hora
   `update_at` DATETIME NULL CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_by` INT NULL,
-  `delete` TINYINT(1) DEFAULT 0,
+  `delete` TINYINT(1) DEFAULT 0, -- SE BORRA SOLO CUANDO ESTA EN 1 (funcióna como verdadero(1) / falso(0))
   -- Borrado lógico - No se borra el registro fisicamente
   PRIMARY KEY (`id_rol`))
 ENGINE = InnoDB;
@@ -39,11 +39,11 @@ ENGINE = InnoDB;
 -- PERO NO SALE DEL SISTEMA
 
 -- -----------------------------------------------------
--- Table `mydb`.`usuarios`
+-- Table `sistema_mensajes`.`usuarios`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`usuarios` (
+CREATE TABLE IF NOT EXISTS `sistema_mensajes`.`usuarios` (
   `id_usuarios` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(100) NOT NULL,
+  `nombre_usuarios` VARCHAR(100) NOT NULL,
   `email` VARCHAR(140) NOT NULL,
   `password_hash` VARCHAR(200) NOT NULL,
   `created_at` DATETIME NULL,
@@ -58,16 +58,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`usuarios` (
   INDEX `fk_usuarios_roles_idx` (`id_rol` ASC) VISIBLE,
   CONSTRAINT `fk_usuarios_roles`
     FOREIGN KEY (`id_rol`)
-    REFERENCES `mydb`.`roles` (`id_rol`)
+    REFERENCES `sistema_mensajes`.`roles` (`id_rol`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`mensajes`
+-- Table `sistema_mensajes`.`mensajes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`mensajes` (
+CREATE TABLE IF NOT EXISTS `sistema_mensajes`.`mensajes` (
   `id_mensajes` INT NOT NULL AUTO_INCREMENT,
   `contenido` TEXT NOT NULL,
   `created_at` DATETIME NULL,
@@ -81,21 +81,21 @@ CREATE TABLE IF NOT EXISTS `mydb`.`mensajes` (
   INDEX `fk_mensajes_usuarios2_idx` (`usuarios_id_usuarios1` ASC) VISIBLE,
   CONSTRAINT `fk_mensajes_usuarios1`
     FOREIGN KEY (`emisor`)
-    REFERENCES `mydb`.`usuarios` (`id_usuarios`)
+    REFERENCES `sistema_mensajes`.`usuarios` (`id_usuarios`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_mensajes_usuarios2`
     FOREIGN KEY (`usuarios_id_usuarios1`)
-    REFERENCES `mydb`.`usuarios` (`id_usuarios`)
+    REFERENCES `sistema_mensajes`.`usuarios` (`id_usuarios`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`comentarios`
+-- Table `sistema_mensajes`.`comentarios`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`comentarios` (
+CREATE TABLE IF NOT EXISTS `sistema_mensajes`.`comentarios` (
   `id_comentario` INT NOT NULL AUTO_INCREMENT,
   `contenido` TEXT NOT NULL,
   `created_at` DATETIME NULL,
@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`comentarios` (
   INDEX `fk_comentarios_usuarios1_idx` (`id_usuarios` ASC) VISIBLE,
   CONSTRAINT `fk_comentarios_usuarios1`
     FOREIGN KEY (`id_usuarios`)
-    REFERENCES `mydb`.`usuarios` (`id_usuarios`)
+    REFERENCES `sistema_mensajes`.`usuarios` (`id_usuarios`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -116,3 +116,9 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- Insertar Datos en tablas
+USE sistema_mensajes;
+INSERT INTO usuarios(nombre_usuarios) VALUES ("matias")
+INSERT INTO roles(nombre_rol) VALUES ("alumno")
+INSERT INTO roles(descripcion_rol) VALUES ("Va al colegio")

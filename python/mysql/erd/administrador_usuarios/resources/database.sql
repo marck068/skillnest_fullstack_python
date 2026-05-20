@@ -117,14 +117,13 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
--- Insertar Datos en tablas
+-- Insertar Datos en tablas 5 registros
 USE sistema_mensajes;
-
-INSERT INTO roles(nombre_rol, descripcion_rol)
+INSERT INTO roles(nombre_rol, descripcion_rol, id_rol)
 VALUES ("admin", "Control total"),
 ("usuario comun", "Permisos administrativos básicos"),
 ("invitado", "Usuario temporal con permisos limitados");
-
+SELECT * FROM roles;
 
 INSERT INTO usuarios(nombre_usuario, password_hash, email, id_rol)
 VALUES ("randy123", "randy123", "randy@gmail.com", 2),
@@ -132,8 +131,64 @@ VALUES ("randy123", "randy123", "randy@gmail.com", 2),
 ("tete", "tete123", "tete@gmail.com", 2),
 ("anne", "anne123", "anne@gmail.com", 3),
 ("martin", "martin123", "martin@gmail.com", 3);
+SELECT * FROM usuarios;
 
-INSERT INTO comentarios( ) VALUES ( );
+INSERT INTO comentarios(contenido, created_by, id_usuario) 
+VALUES("Hola este es un comentario",1 ,1 ),
+("Hola soy el akon admin",2 ,2 ),
+("Hola soy la tete",3 ,3 );
+SELECT * FROM comentarios;
+
+INSERT INTO mensajes(contenido, created_by, emisor, receptor)
+VALUES("Hola martin, eres el mejor", 1, 1, 5),
+("Hola tete, ¿hiciste la tarea?", 4, 4, 3),
+("Hola randy, mañana es feriado", 3, 3, 1);
+SELECT * FROM mensajes;
+
+-- CONSULTAS SIMPLES CON CONDICIÓN
+-- WHERE EN MYSQL
+-- MOSTRAR MENSAJES DONDE EL REMITENTE SEA RANDY
+SELECT contenido, emisor
+FROM mensajes
+WHERE emisor = 1; -- WHERE aplica condición sobre consulta
+
+-- MOSTRAR USUARIOS QUE ESTAN ACTIVOS (DELETED 0)
+SELECT nombre_usuario, email, id_rol, deleted
+FROM usuarios
+WHERE deleted = 0;
+
+-- MOSTRAR USUARIOS QUE ESTAN ELIMINADOS (DELETED 1)
+SELECT nombre_usuario, email, id_rol, deleted
+FROM usuarios
+WHERE deleted = 1;
+
+-- BORRAR UN USUARIO (BORRADO LOGICO)
+UPDATE usuarios
+SET deleted = 1
+WHERE id_usuario = 1;
 
 
-INSERT INTO mensajes() VALUES;
+-- RECUPERAR UN USUARIO
+UPDATE usuarios
+SET deleted = 0
+WHERE id_usuario = 1;
+
+-- TAREA
+-- MOSTRAR ROLES DE USUARIO (nombre, descripcion)
+SELECT nombre_rol, descripcion_rol, deleted
+FROM roles
+WHERE deleted = 0;
+
+-- ELIMINAR 2 ROLES DE USUARIO
+UPDATE roles
+SET deleted = 1
+WHERE id_rol = 2;
+
+UPDATE roles
+SET deleted = 1
+WHERE id_rol = 3;
+
+-- RECUPERAR 1 ROL DE USUARIO
+UPDATE roles
+SET deleted = 0
+WHERE id_rol = 2;

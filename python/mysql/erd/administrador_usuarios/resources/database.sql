@@ -24,37 +24,36 @@ CREATE TABLE IF NOT EXISTS `sistema_mensajes`.`roles` (
   `id_rol` INT NOT NULL AUTO_INCREMENT,
   `nombre_rol` VARCHAR(50) NOT NULL,
   `descripcion_rol` VARCHAR(300) NOT NULL,
-  `created_at` DATETIME NULL CURRENT_TIMESTAMP, --CURRENT_TIMESTAMP: Valor fecha y hora
-  `update_at` DATETIME NULL CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP, -- CURRENT_TIMESTAMP: Valor fecha y hora actual
+  `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_by` INT NULL,
-  `delete` TINYINT(1) DEFAULT 0, -- SE BORRA SOLO CUANDO ESTA EN 1 (funcióna como verdadero(1) / falso(0))
+  `deleted` TINYINT(1) DEFAULT 0,  --- Sirve como vuleano (1:verdadero) (2:falso)
   -- Borrado lógico - No se borra el registro fisicamente
   PRIMARY KEY (`id_rol`))
 ENGINE = InnoDB;
 
--- DIEGO MUERE - DEBEMOS SACARLO DEL SISTEMA, BORRADO FISICO DELETE FROM USUARIO
+-- DIEGO MUERE- DEBEMOS SACARLO DEL SISTEMA. BORRADO FÍSICO DELETE FROM USUARIO
 -- CON DELETE EL DATO DEJA DE EXISTIR - NO SE PUEDE RECUPERAR
--- EN CAMBIO CON BORRADO LÓGICO (campo deleted activo - deleted (1))
+-- EN CAMBIO CON BORRADO LÓGICO (campo deleted activo - deleted 1))
 -- PODEMOS OCULTAR EL USUARIO PARA QUE EL CLIENTE NO LO VEA
--- PERO NO SALE DEL SISTEMA
+-- PERO NO SALE DEL SISTEMA.
 
 -- -----------------------------------------------------
 -- Table `sistema_mensajes`.`usuarios`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sistema_mensajes`.`usuarios` (
-  `id_usuarios` INT NOT NULL AUTO_INCREMENT,
-  `nombre_usuarios` VARCHAR(100) NOT NULL,
-  `email` VARCHAR(140) NOT NULL,
-  `password_hash` VARCHAR(200) NOT NULL,
-  `created_at` DATETIME NULL,
-  `updated_at` DATETIME NULL,
+  `id_usuario` INT NOT NULL AUTO_INCREMENT,
+  `nombre_usuario` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(150) NOT NULL,
+  `password_hash` VARCHAR(255) NOT NULL,
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP, -- CURRENT_TIMESTAMP: Valor fecha y hora actual
+  `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_by` INT NULL,
-  `delete` TINYINT(1) NULL,
+  `deleted` TINYINT(1) DEFAULT 0, 
   `id_rol` INT NOT NULL,
-  PRIMARY KEY (`id_usuarios`),
-  UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC) VISIBLE,
+  PRIMARY KEY (`id_usuario`),
+  UNIQUE INDEX `nombre_usuario_UNIQUE` (`nombre_usuario` ASC) VISIBLE,
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
-  UNIQUE INDEX `password_hash_UNIQUE` (`password_hash` ASC) VISIBLE,
   INDEX `fk_usuarios_roles_idx` (`id_rol` ASC) VISIBLE,
   CONSTRAINT `fk_usuarios_roles`
     FOREIGN KEY (`id_rol`)
@@ -68,25 +67,25 @@ ENGINE = InnoDB;
 -- Table `sistema_mensajes`.`mensajes`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sistema_mensajes`.`mensajes` (
-  `id_mensajes` INT NOT NULL AUTO_INCREMENT,
+  `id_mensaje` INT NOT NULL AUTO_INCREMENT,
   `contenido` TEXT NOT NULL,
-  `created_at` DATETIME NULL,
-  `update_at` DATETIME NULL,
+ `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP, -- CURRENT_TIMESTAMP: Valor fecha y hora actual
+  `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_by` INT NULL,
-  `delete` TINYINT(1) NULL,
+  `deleted` TINYINT(1) DEFAULT 0, 
   `emisor` INT NOT NULL,
-  `usuarios_id_usuarios1` INT NOT NULL,
-  PRIMARY KEY (`id_mensajes`),
+  `receptor` INT NOT NULL,
+  PRIMARY KEY (`id_mensaje`),
   INDEX `fk_mensajes_usuarios1_idx` (`emisor` ASC) VISIBLE,
-  INDEX `fk_mensajes_usuarios2_idx` (`usuarios_id_usuarios1` ASC) VISIBLE,
+  INDEX `fk_mensajes_usuarios2_idx` (`receptor` ASC) VISIBLE,
   CONSTRAINT `fk_mensajes_usuarios1`
     FOREIGN KEY (`emisor`)
-    REFERENCES `sistema_mensajes`.`usuarios` (`id_usuarios`)
+    REFERENCES `sistema_mensajes`.`usuarios` (`id_usuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_mensajes_usuarios2`
-    FOREIGN KEY (`usuarios_id_usuarios1`)
-    REFERENCES `sistema_mensajes`.`usuarios` (`id_usuarios`)
+    FOREIGN KEY (`receptor`)
+    REFERENCES `sistema_mensajes`.`usuarios` (`id_usuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -98,16 +97,16 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `sistema_mensajes`.`comentarios` (
   `id_comentario` INT NOT NULL AUTO_INCREMENT,
   `contenido` TEXT NOT NULL,
-  `created_at` DATETIME NULL,
-  `update_at` DATETIME NULL,
+ `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP, -- CURRENT_TIMESTAMP: Valor fecha y hora actual
+  `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_by` INT NULL,
-  `delete` TINYINT(1) NULL,
-  `id_usuarios` INT NOT NULL,
+  `deleted` TINYINT(1) DEFAULT 0, 
+  `id_usuario` INT NOT NULL,
   PRIMARY KEY (`id_comentario`),
-  INDEX `fk_comentarios_usuarios1_idx` (`id_usuarios` ASC) VISIBLE,
+  INDEX `fk_comentarios_usuarios1_idx` (`id_usuario` ASC) VISIBLE,
   CONSTRAINT `fk_comentarios_usuarios1`
-    FOREIGN KEY (`id_usuarios`)
-    REFERENCES `sistema_mensajes`.`usuarios` (`id_usuarios`)
+    FOREIGN KEY (`id_usuario`)
+    REFERENCES `sistema_mensajes`.`usuarios` (`id_usuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -117,8 +116,24 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
+
 -- Insertar Datos en tablas
 USE sistema_mensajes;
-INSERT INTO usuarios(nombre_usuarios) VALUES ("matias")
-INSERT INTO roles(nombre_rol) VALUES ("alumno")
-INSERT INTO roles(descripcion_rol) VALUES ("Va al colegio")
+
+INSERT INTO roles(nombre_rol, descripcion_rol)
+VALUES ("admin", "Control total"),
+("usuario comun", "Permisos administrativos básicos"),
+("invitado", "Usuario temporal con permisos limitados");
+
+
+INSERT INTO usuarios(nombre_usuario, password_hash, email, id_rol)
+VALUES ("randy123", "randy123", "randy@gmail.com", 2),
+("akon123", "akon123", "akon@gmail.com", 1),
+("tete", "tete123", "tete@gmail.com", 2),
+("anne", "anne123", "anne@gmail.com", 3),
+("martin", "martin123", "martin@gmail.com", 3);
+
+INSERT INTO comentarios( ) VALUES ( );
+
+
+INSERT INTO mensajes() VALUES;

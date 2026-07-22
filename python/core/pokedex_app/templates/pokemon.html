@@ -33,7 +33,7 @@
 
                         <div class="col-md-5 text-center p-4">
 
-                            <img src="{{ url_for('static', filename='img/bullbasaur.png' + pokemon.imagen) }}">
+                            <img src="{{ url_for('static', filename='img/' + pokemon.imagen) }}">
 
                         </div>
 
@@ -54,12 +54,12 @@
 
                                 <p>
                                     <strong>Altura:</strong>
-                                    {{ pokemon.altura }} m
+                                    {{ pokemon.altura }}
                                 </p>
 
                                 <p>
                                     <strong>Peso:</strong>
-                                    {{ pokemon.peso }} kg
+                                    {{ pokemon.peso }}
                                 </p>
 
                                 <p>

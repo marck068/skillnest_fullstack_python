@@ -15,44 +15,196 @@
 
     <nav class="navbar navbar-dark bg-danger shadow">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="/">⚡ Pokédex</a>
+            <a class="navbar-brand fw-bold" href="/">
+                ⚡ Pokédex
+            </a>
         </div>
     </nav>
 
     <div class="container mt-5">
 
-        <h1 class="text-center mb-4">🔴 Pokédex</h1>
+        <h1 class="text-center mb-4">
+            🔴 Pokédex
+        </h1>
 
-        <p class="text-center text-secondary">
+        <p class="text-center text-secondary mb-5">
             Lista de Pokémon disponibles.
         </p>
 
-        {% if pokemones %}
-
         <div class="row">
 
-            {% for pokemon in pokemones %}
-
+            <!-- Bulbasaur -->
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card pokemon bulbasaur shadow h-100">
+                    <div class="imagen-pokemon bulbasaur-img text-center">
+                        <img src="{{ url_for('static', filename='img/bullbasaur.png') }}"
+                             class="card-img-top p-3"
+                             alt="Bulbasaur">
+                    </div>
+                    <div class="card-body">
+                        <div class="nombre-pokemon bulbasaur-nombre text-center">
+                            <h5>Bulbasaur</h5>
+                        </div>
+                        <div class="numero-pokemon bulbasaur-numero text-center">
+                            <p><strong>N°</strong> 1</p>
+                        </div>
+                        <div class="tipo-pokemon bulbasaur-tipo text-center">
+                            <p>Planta / Veneno</p>
+                        </div>
+                        <div class="boton-pokemon bulbasaur-boton text-center">
+                            <a href="/pokemon/Bulbasaur" class="btn btn-success">
+                                Ver detalles
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                <div class="card shadow h-100">
+            <!-- Charmander -->
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card pokemon charmander shadow h-100">
+                    <div class="imagen-pokemon charmander-img text-center">
+                        <img src="{{ url_for('static', filename='img/charmander.png') }}"
+                             class="card-img-top p-3"
+                             alt="Charmander">
+                    </div>
+                    <div class="card-body">
+                        <div class="nombre-pokemon charmander-nombre text-center">
+                            <h5>Charmander</h5>
+                        </div>
+                        <div class="numero-pokemon charmander-numero text-center">
+                            <p><strong>N°</strong> 4</p>
+                        </div>
+                        <div class="tipo-pokemon charmander-tipo text-center">
+                            <p>Fuego</p>
+                        </div>
+                        <div class="boton-pokemon charmander-boton text-center">
+                            <a href="/pokemon/Charmander" class="btn btn-success">
+                                Ver detalles
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                    <img
-                        src="{{ url_for('static', filename='img/bullbasaur.png' ~ pokemon.imagen) }}"
-                        class="card-img-top p-3"
-                        alt="{{ pokemon.nombre }}">
+            <!-- Squirtle -->
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card pokemon squirtle shadow h-100">
+                    <div class="imagen-pokemon squirtle-img text-center">
+                        <img src="{{ url_for('static', filename='img/squirtle.png') }}"
+                             class="card-img-top p-3"
+                             alt="Squirtle">
+                    </div>
+                    <div class="card-body">
+                        <div class="nombre-pokemon squirtle-nombre text-center">
+                            <h5>Squirtle</h5>
+                        </div>
+                        <div class="numero-pokemon squirtle-numero text-center">
+                            <p><strong>N°</strong> 7</p>
+                        </div>
+                        <div class="tipo-pokemon squirtle-tipo text-center">
+                            <p>Agua</p>
+                        </div>
+                        <div class="boton-pokemon squirtle-boton text-center">
+                            <a href="/pokemon/Squirtle" class="btn btn-success">
+                                Ver detalles
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                    <div class="card-body text-center">
+                        <!-- Pikachu -->
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card pokemon pikachu shadow h-100">
+                    <div class="imagen-pokemon pikachu-img text-center">
+                        <img src="{{ url_for('static', filename='img/pikachu.png') }}"
+                             class="card-img-top p-3"
+                             alt="Pikachu">
+                    </div>
+                    <div class="card-body">
+                        <div class="nombre-pokemon pikachu-nombre text-center">
+                            <h5>Pikachu</h5>
+                        </div>
+                        <div class="numero-pokemon pikachu-numero text-center">
+                            <p><strong>N°</strong> 25</p>
+                        </div>
+                        <div class="tipo-pokemon pikachu-tipo text-center">
+                            <p>Eléctrico</p>
+                        </div>
+                        <div class="boton-pokemon pikachu-boton text-center">
+                            <a href="/pokemon/Pikachu" class="btn btn-success">
+                                Ver detalles
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                        <h5 class="card-title">
-                            {{ pokemon.nombre }}
-                        </h5>
+            <!-- Jigglypuff -->
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card pokemon jigglypuff shadow h-100">
+                    <div class="imagen-pokemon jigglypuff-img text-center">
+                        <img src="{{ url_for('static', filename='img/jigglypuff.png') }}"
+                             class="card-img-top p-3"
+                             alt="Jigglypuff">
+                    </div>
+                    <div class="card-body">
+                        <div class="nombre-pokemon jigglypuff-nombre text-center">
+                            <h5>Jigglypuff</h5>
+                        </div>
+                        <div class="numero-pokemon jigglypuff-numero text-center">
+                            <p><strong>N°</strong> 39</p>
+                        </div>
+                        <div class="tipo-pokemon jigglypuff-tipo text-center">
+                            <p>Normal / Hada</p>
+                        </div>
+                        <div class="boton-pokemon jigglypuff-boton text-center">
+                            <a href="/pokemon/Jigglypuff" class="btn btn-success">
+                                Ver detalles
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                        <p><strong>N°</strong> {{ pokemon.id }}</p>
+            <!-- Meowth -->
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card pokemon meowth shadow h-100">
+                    <div class="imagen-pokemon meowth-img text-center">
+                        <img src="{{ url_for('static', filename='img/meowth.png') }}"
+                             class="card-img-top p-3"
+                             alt="Meowth">
 
-                        <a href="/pokemon/{{ pokemon.nombre }}" class="btn btn-primary">
-                            Ver detalles
-                        </a>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="nombre-pokemon meowth-nombre text-center">
+
+                            <h5>Meowth</h5>
+
+                        </div>
+
+                        <div class="numero-pokemon meowth-numero text-center">
+
+                            <p><strong>N°</strong> 52</p>
+
+                        </div>
+
+                        <div class="tipo-pokemon meowth-tipo text-center">
+
+                            <p>Normal</p>
+
+                        </div>
+
+                        <div class="boton-pokemon meowth-boton text-center">
+
+                            <a href="/pokemon/Meowth" class="btn btn-success">
+                                Ver detalles
+                            </a>
+
+                        </div>
 
                     </div>
 
@@ -60,25 +212,195 @@
 
             </div>
 
-            {% endfor %}
+            <!-- Psyduck -->
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+
+                <div class="card pokemon psyduck shadow h-100">
+
+                    <div class="imagen-pokemon psyduck-img text-center">
+
+                        <img src="{{ url_for('static', filename='img/psyduck.png') }}"
+                             class="card-img-top p-3"
+                             alt="Psyduck">
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="nombre-pokemon psyduck-nombre text-center">
+
+                            <h5>Psyduck</h5>
+
+                        </div>
+
+                        <div class="numero-pokemon psyduck-numero text-center">
+
+                            <p><strong>N°</strong> 54</p>
+
+                        </div>
+
+                        <div class="tipo-pokemon psyduck-tipo text-center">
+
+                            <p>Agua</p>
+
+                        </div>
+
+                        <div class="boton-pokemon psyduck-boton text-center">
+
+                            <a href="/pokemon/Psyduck" class="btn btn-success">
+                                Ver detalles
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+                        <!-- Gengar -->
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+
+                <div class="card pokemon gengar shadow h-100">
+
+                    <div class="imagen-pokemon gengar-img text-center">
+
+                        <img src="{{ url_for('static', filename='img/gengar.png') }}"
+                             class="card-img-top p-3"
+                             alt="Gengar">
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="nombre-pokemon gengar-nombre text-center">
+
+                            <h5>Gengar</h5>
+
+                        </div>
+
+                        <div class="numero-pokemon gengar-numero text-center">
+
+                            <p><strong>N°</strong> 94</p>
+
+                        </div>
+
+                        <div class="tipo-pokemon gengar-tipo text-center">
+
+                            <p>Fantasma / Veneno</p>
+
+                        </div>
+
+                        <div class="boton-pokemon gengar-boton text-center">
+
+                            <a href="/pokemon/Gengar" class="btn btn-success">
+                                Ver detalles
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Onix -->
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+
+                <div class="card pokemon onix shadow h-100">
+
+                    <div class="imagen-pokemon onix-img text-center">
+
+                        <img src="{{ url_for('static', filename='img/onix.png') }}"
+                             class="card-img-top p-3"
+                             alt="Onix">
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="nombre-pokemon onix-nombre text-center">
+
+                            <h5>Onix</h5>
+
+                        </div>
+
+                        <div class="numero-pokemon onix-numero text-center">
+
+                            <p><strong>N°</strong> 95</p>
+
+                        </div>
+
+                        <div class="tipo-pokemon onix-tipo text-center">
+
+                            <p>Roca / Tierra</p>
+
+                        </div>
+
+                        <div class="boton-pokemon onix-boton text-center">
+
+                            <a href="/pokemon/Onix" class="btn btn-success">
+                                Ver detalles
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Snorlax -->
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+
+                <div class="card pokemon snorlax shadow h-100">
+
+                    <div class="imagen-pokemon snorlax-img text-center">
+
+                        <img src="{{ url_for('static', filename='img/snorlax.png') }}"
+                             class="card-img-top p-3"
+                             alt="Snorlax">
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="nombre-pokemon snorlax-nombre text-center">
+
+                            <h5>Snorlax</h5>
+
+                        </div>
+
+                        <div class="numero-pokemon snorlax-numero text-center">
+
+                            <p><strong>N°</strong> 143</p>
+
+                        </div>
+
+                        <div class="tipo-pokemon snorlax-tipo text-center">
+
+                            <p>Normal</p>
+
+                        </div>
+
+                        <div class="boton-pokemon snorlax-boton text-center">
+
+                            <a href="/pokemon/Snorlax" class="btn btn-success">
+                                Ver detalles
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
-
-        {% else %}
-
-        <div class="alert alert-warning text-center">
-            No hay Pokémon disponibles.
-        </div>
-
-        {% endif %}
-
-        {% if error %}
-
-        <div class="alert alert-danger text-center mt-4">
-            {{ error }}
-        </div>
-
-        {% endif %}
 
     </div>
 

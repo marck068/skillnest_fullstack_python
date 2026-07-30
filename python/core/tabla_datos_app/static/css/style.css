@@ -1,0 +1,153 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f6fb;
+    color: #1f2937;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #2563eb;
+}
+
+.subtitulo {
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 25px;
+}
+
+/* Caja de filtros */
+.filtros {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+}
+
+.filtros h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.filtros form {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 180px;
+}
+
+.campo label {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 4px;
+}
+
+.campo select {
+    padding: 6px 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+}
+
+/* Tabla */
+.tabla-plataformas {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.tabla-plataformas thead {
+    background-color: #111827;
+    color: #ffffff;
+}
+
+.tabla-plataformas th,
+.tabla-plataformas td {
+    padding: 10px 14px;
+    text-align: left;
+}
+
+.tabla-plataformas tbody tr {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tabla-plataformas tbody tr:last-child {
+    border-bottom: none;
+}
+
+.icono-plataforma {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 13px;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.badge-usuarios {
+    background-color: #2563eb;
+    color: #ffffff;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.badge-pais {
+    background-color: #6b7280;
+    color: #ffffff;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.btn-detalle {
+    display: inline-block;
+    background-color: #2563eb;
+    color: #ffffff;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.pie-tabla {
+    text-align: right;
+    color: #6b7280;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.mensaje-vacio {
+    text-align: center;
+    color: #6b7280;
+    padding: 20px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.texto-tenue {
+    color: #9ca3af;
+    font-size: 12px;
+}

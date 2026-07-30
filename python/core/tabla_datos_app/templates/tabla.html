@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataformas Digitales</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <h1>&#9638; Plataformas Digitales</h1>
+    <p class="subtitulo">Visualización de datos de las principales plataformas digitales</p>
+
+    <!-- Filtros y ordenamiento -->
+    <div class="filtros">
+        <h2>&#9660; Filtros y Ordenamiento</h2>
+        <form method="get" action="/tabla">
+            <div class="campo">
+                <label for="pais">Filtrar por país:</label>
+                <select name="pais" id="pais" onchange="this.form.submit()">
+                    <option value="todos" {% if pais_filtro == "todos" %}selected{% endif %}>Todos los países</option>
+                    {% for p in paises %}
+                        <option value="{{ p }}" {% if pais_filtro == p %}selected{% endif %}>{{ p }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="campo">
+                <label for="orden">Ordenar por:</label>
+                <select name="orden" id="orden" onchange="this.form.submit()">
+                    <option value="nombre" {% if orden == "nombre" %}selected{% endif %}>Nombre</option>
+                    <option value="usuarios" {% if orden == "usuarios" %}selected{% endif %}>Usuarios</option>
+                    <option value="fundado" {% if orden == "fundado" %}selected{% endif %}>Año Fundación</option>
+                    <option value="pais" {% if orden == "pais" %}selected{% endif %}>País</option>
+                </select>
+            </div>
+
+            <div class="campo">
+                <label for="direccion">Dirección:</label>
+                <select name="direccion" id="direccion" onchange="this.form.submit()">
+                    <option value="asc" {% if direccion == "asc" %}selected{% endif %}>Ascendente</option>
+                    <option value="desc" {% if direccion == "desc" %}selected{% endif %}>Descendente</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <!-- Tabla de plataformas -->
+    {% if plataformas %}
+    <table class="tabla-plataformas">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Usuarios</th>
+                <th>Año Fundación</th>
+                <th>País</th>
+                <th>Detalles</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for plataforma in plataformas %}
+            <tr>
+                <td>
+                    <span class="icono-plataforma" style="background-color: {{ plataforma['color'] }};">
+                        <i class="bi {{ plataforma['icono'] }}"></i>
+                    </span>
+                    {{ plataforma["nombre"] }}
+                </td>
+                <td><span class="badge-usuarios">{{ plataforma["usuarios"] }}</span></td>
+                <td>{{ plataforma["fundado"] }}</td>
+                <td><span class="badge-pais">{{ plataforma["pais"] }}</span></td>
+                <td><span class="btn-detalle">&#9432;</span></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p class="pie-tabla">Mostrando {{ plataformas|length }} plataformas</p>
+    {% else %}
+        <p class="mensaje-vacio">No hay plataformas para mostrar con este filtro.</p>
+    {% endif %}
+
+    <footer>
+        <p>Visualización de datos desarrollada con Flask.</p>
+        <p class="texto-tenue">Los datos mostrados son ficticios para fines educativos.</p>
+    </footer>
+
+</body>
+</html>

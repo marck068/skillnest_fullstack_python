@@ -193,3 +193,62 @@ def checkout():
 if __name__ == "__main__":
 
     app.run(debug=True)
+
+
+from flask import Flask, render_template, request
+from datetime import datetime
+
+app = Flask(__name__)
+
+# Ruta principal (Formulario de compra)
+@app.route('/')
+def index():
+    return render_template("index.html")
+
+# Ruta para ver las frutas disponibles
+@app.route('/frutas')
+def frutas():
+    return render_template("frutas.html")
+
+# Ruta para procesar la orden de compra (POST)
+@app.route('/checkout', methods=['POST'])
+def checkout():
+    # Muestra los datos recibidos en la consola para depuración
+    print("Datos recibidos del formulario:", request.form)
+
+    # Captura de cantidades de frutas (asegurando convertir a entero)
+    fresa = int(request.form.get('strawberry', 0))
+    frambuesa = int(request.form.get('raspberry', 0))
+    manzana = int(request.form.get('apple', 0))
+    platano = int(request.form.get('banana', 0))
+
+    # Cálculo del total de frutas
+    total_frutas = fresa + frambuesa + manzana + platano
+
+    # Datos del cliente
+    nombre = request.form.get('first_name', '')
+    apellido = request.form.get('last_name', '')
+    estudiante_id = request.form.get('student_id', '')
+
+    # Mensaje de confirmación impreso en la consola del servidor
+    print(f"Cobrando a {nombre} {apellido} por {total_frutas} frutas")
+
+    # Fecha y hora actual formateada
+    fecha_hora = datetime.now().strftime("%B %d, %Y %I:%M:%S %p")
+
+    # Renderiza la plantilla checkout pasando todas las variables necesarias
+    return render_template(
+        "checkout.html",
+        fresa=fresa,
+        frambuesa=frambuesa,
+        manzana=manzana,
+        platano=platano,
+        total_frutas=total_frutas,
+        nombre=nombre,
+        apellido=apellido,
+        estudiante_id=estudiante_id,
+        fecha_hora=fecha_hora
+    )
+
+if __name__ == "__main__":
+    app.run(debug=True)

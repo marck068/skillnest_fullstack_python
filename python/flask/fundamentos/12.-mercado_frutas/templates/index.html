@@ -134,4 +134,193 @@ Selecciona tus frutas
 <div class="row">
 
 {% for fruta in frutas %}
+
+<div class="col-md-6 mb-4">
+
+    <div class="card fruta-card h-100 shadow-sm">
+
+        <!-- Imagen de la fruta -->
+
+        <img
+
+        src="{{ url_for('static', filename='images/' + fruta.imagen) }}"
+
+        class="card-img-top"
+
+        alt="{{ fruta.nombre }}">
+
+        <div class="card-body">
+
+            <!-- Nombre -->
+
+            <h5 class="card-title">
+
+                {{ fruta.nombre }}
+
+            </h5>
+
+            <!-- Precio -->
+
+            <h6 class="text-success fw-bold">
+
+                ${{ fruta.precio }}
+
+            </h6>
+
+            <!-- Descripción -->
+
+            <p class="card-text">
+
+                {{ fruta.descripcion }}
+
+            </p>
+
+        </div>
+
+        <!-- Selector de cantidad -->
+
+        <div class="card-footer bg-white">
+
+            <input
+
+            type="number"
+
+            class="form-control"
+
+            min="0"
+
+            value="0"
+
+            name="{{ fruta.nombre }}">
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- Información del cliente               -->
+<!-- ===================================== -->
+
+<div class="col-lg-4">
+
+<div class="card shadow">
+
+<div class="card-header">
+
+<h3>
+
+Información de Contacto
+
+</h3>
+
+</div>
+
+<div class="card-body">
+
+<!-- Nombre -->
+
+<div class="mb-3">
+
+<label class="form-label">
+
+Nombre
+
+</label>
+
+<input
+
+type="text"
+
+class="form-control"
+
+name="nombre"
+
+required>
+
+</div>
+
+<!-- Correo -->
+
+<div class="mb-3">
+
+<label class="form-label">
+
+Email
+
+</label>
+
+<input
+
+type="email"
+
+class="form-control"
+
+name="email"
+
+required>
+
+</div>
+
+<!-- Dirección -->
+
+<div class="mb-3">
+
+<label class="form-label">
+
+Dirección de entrega
+
+</label>
+
+<textarea
+
+class="form-control"
+
+rows="3"
+
+name="direccion"
+
+required>
+
+</textarea>
+
+</div>
+
+<hr>
+
+<button
+
+type="submit"
+
+class="btn btn-primary w-100">
+
+<i class="bi bi-cart-fill"></i>
+
+Crear Orden
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</form>
+
+</body>
+
 </html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Renderizando Listas</title>
+
+</head>
+
+<body>
+
+    <h1>Números Aleatorios</h1>
+
+    {% for numero in numeros %}
+
+        <p>{{ numero }}</p>
+
+    {% endfor %}
+
+    <hr>
+
+    <h1>Listado de Estudiantes</h1>
+
+    <ul>
+
+        {% for estudiante in estudiantes %}
+
+            <li>
+
+                {{ estudiante["nombre"] }}
+
+                -
+
+                {{ estudiante["edad"] }}
+
+            </li>
+
+        {% endfor %}
+
+    </ul>
+  <h1>Listado de juegos</h1>
+
+    <ul>
+
+        {% for juego in juegos %}
+
+            <li>
+
+                {{ juego["nombre"] }}
+
+                -
+
+                {{ juego["edad"] }}
+
+            </li>
+
+        {% endfor %}
+
+    </ul>
+</body>
+
+</html>
+🔁 El ciclo for en Jinja2
+La siguiente estructura:
+
+{% for numero in numeros %}
+
+    <p>{{ numero }}</p>
+
+{% endfor %}

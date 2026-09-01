@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contador de Visitas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 60px;
+        }
+        .card {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+        h1 {
+            color: #333;
+        }
+        .numero {
+            font-size: 48px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin: 10px 0;
+        }
+        .reinicios {
+            color: #777;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 18px;
+            margin: 6px;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+            color: white;
+        }
+        .btn-sumar { background-color: #62b3f5; }
+        .btn-reiniciar { background-color: #cf4b3a; }
+        .btn-destruir { background-color: #6e6565; }
+        .btn-form { background-color: #16b41c; }
+
+        form.inline {
+            display: inline;
+        }
+        .form-personalizado {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+        input[type="number"] {
+            width: 100px;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            color: #555;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Has visitado esta página</h1>
+        <div class="numero">{{ visitas }} veces</div>
+
+        <div class="reinicios">
+            El contador se ha reiniciado <strong>{{ reinicios }}</strong> veces
+        </div>
+
+        <!-- Nivel 2 / Bonus plata: botón +2 -->
+        <form class="inline" action="{{ url_for('sumar_dos') }}" method="get">
+            <button class="btn-sumar" type="submit">Sumar 2 visitas</button>
+        </form>
+
+        <!-- Nivel 2 / Bonus plata: botón reiniciar -->
+        <form class="inline" action="{{ url_for('reiniciar') }}" method="get">
+            <button class="btn-reiniciar" type="submit">Reiniciar a 0</button>
+        </form>
+
+        <!-- Nivel 3 / Bonus oro: formulario para sumar cantidad personalizada -->
+        <form class="form-personalizado" action="{{ url_for('sumar_personalizado') }}" method="post">
+            <input type="number" name="cantidad" placeholder="Ej: 5" required>
+            <button class="btn-form" type="submit">Sumar cantidad</button>
+        </form>
+
+        <br>
+
+        <!-- Nivel 1: destruir sesión -->
+        <a href="{{ url_for('destruir_sesion') }}">Destruir sesión (borrar todo)</a>
+    </div>
+</body>
+</html>

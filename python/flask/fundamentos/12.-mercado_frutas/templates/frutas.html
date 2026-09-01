@@ -1,230 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo - Mercado de Frutas</title>
 
-    <!-- Bootstrap CSS -->
-
-    <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-    rel="stylesheet">
-
-    <!-- Bootstrap Icons -->
-
-    <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-
-    <!-- Hoja de estilos -->
-
-    <link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='css/style.css') }}">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-
 <body>
 
-<!-- ===================================== -->
-<!-- Barra de navegación                   -->
-<!-- ===================================== -->
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-
     <div class="container">
-
-        <a class="navbar-brand fw-bold"
-           href="{{ url_for('index') }}">
-
-            <i class="bi bi-apple"></i>
-
-            Mercado de Frutas
-
+        <a class="navbar-brand fw-bold" href="{{ url_for('index') }}">
+             Mercado de Frutas
         </a>
-
         <div>
-
-            <a class="nav-link text-white d-inline"
-               href="{{ url_for('index') }}">
-
-                Inicio
-
-            </a>
-
-            <a class="nav-link text-white d-inline"
-               href="{{ url_for('catalogo') }}">
-
-                Catálogo
-
-            </a>
-
+            <a class="nav-link text-white d-inline" href="{{ url_for('index') }}">Inicio</a>
+            <a class="nav-link text-white d-inline" href="{{ url_for('catalogo') }}">Catálogo</a>
         </div>
-
     </div>
-
 </nav>
 
-<!-- ===================================== -->
-<!-- Encabezado                            -->
-<!-- ===================================== -->
-
-<header class="hero hero-catalogo text-center text-white">
-
+<header class="hero text-center text-white">
     <div class="container">
-
-        <h1>
-
-            Nuestras Frutas
-
-        </h1>
-
-        <p>
-
-            Descubre nuestra variedad de frutas frescas disponibles.
-
-        </p>
-
+        <h1>Nuestras Frutas</h1>
+        <p>Descubre nuestra variedad de frutas frescas disponibles</p>
     </div>
-
 </header>
 
-<!-- ===================================== -->
-<!-- Catálogo de frutas                    -->
-<!-- ===================================== -->
-
-<div class="container mt-5">
-
-    <div class="row g-3">
-
+<div class="container mt-5 mb-5">
+    <div class="row">
         {% for fruta in frutas %}
-
-        <div class="col-6 col-md-3">
-
-            <div class="catalogo-tile shadow-sm">
-
-                <img
-                src="{{ url_for('static', filename='images/' + fruta.imagen) }}"
-                alt="{{ fruta.nombre }}">
-
-                <div class="catalogo-tile-caption">
-
-                    <span class="catalogo-tile-nombre">
-                        {{ fruta.nombre }}
-                    </span>
-
-                    <span class="catalogo-tile-precio">
-                        ${{ fruta.precio }}
-                    </span>
-
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="catalogo-card">
+                <img src="{{ url_for('static', filename='images/' + fruta.imagen) }}" alt="{{ fruta.nombre }}">
+                <div class="catalogo-overlay">
+                    <h5>{{ fruta.nombre }}</h5>
+                    <span class="precio">${{ fruta.precio }}</span>
                 </div>
-
             </div>
-
         </div>
-
         {% endfor %}
-
     </div>
 
-    <!-- ===================================== -->
-    <!-- Botón hacia el formulario de compra   -->
-    <!-- ===================================== -->
-
-    <div class="text-center my-5">
-
-        <a
-        href="{{ url_for('index') }}"
-        class="btn btn-primary btn-lg">
-
-            <i class="bi bi-cart-fill"></i>
-
-            Hacer un pedido
-
+    <div class="text-center mb-5">
+        <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg">
+            <i class="bi bi-cart-fill"></i> Hacer un pedido
         </a>
-
     </div>
 
-</div>
-
-<!-- ===================================== -->
-<!-- ¿Por qué elegirnos?                   -->
-<!-- ===================================== -->
-
-<div class="container mb-5">
-
-    <h3 class="text-center mb-4">
-
-        ¿Por qué elegirnos?
-
-    </h3>
-
-    <div class="row g-3">
-
-        <div class="col-md-4">
-
-            <div class="beneficio-card shadow-sm text-center">
-
-                <i class="bi bi-leaf-fill"></i>
-
-                <h6>100% Orgánico</h6>
-
-                <p>
-
-                    Todas nuestras frutas son cultivadas sin pesticidas ni químicos dañinos.
-
-                </p>
-
+    <h2 class="text-center mb-4">¿Por qué elegirnos?</h2>
+    <div class="row text-center">
+        <div class="col-md-4 mb-3">
+            <div class="beneficio">
+                <i class="bi bi-leaf"></i>
+                <h5>100% Orgánico</h5>
+                <p>Todas nuestras frutas son cultivadas sin pesticidas ni químicos dañinos.</p>
             </div>
-
         </div>
-
-        <div class="col-md-4">
-
-            <div class="beneficio-card shadow-sm text-center">
-
+        <div class="col-md-4 mb-3">
+            <div class="beneficio">
                 <i class="bi bi-truck"></i>
-
-                <h6>Entrega Rápida</h6>
-
-                <p>
-
-                    Entregamos en menos de 48 horas para asegurar la máxima frescura.
-
-                </p>
-
+                <h5>Entrega Rápida</h5>
+                <p>Entregamos en menos de 48 horas para asegurar la máxima frescura.</p>
             </div>
-
         </div>
-
-        <div class="col-md-4">
-
-            <div class="beneficio-card shadow-sm text-center">
-
-                <i class="bi bi-award-fill"></i>
-
-                <h6>Calidad Garantizada</h6>
-
-                <p>
-
-                    Si no estás satisfecho con nuestros productos, te devolvemos tu dinero.
-
-                </p>
-
+        <div class="col-md-4 mb-3">
+            <div class="beneficio">
+                <i class="bi bi-award"></i>
+                <h5>Calidad Garantizada</h5>
+                <p>Si no estás satisfecho con nuestros productos, te devolvemos tu dinero.</p>
             </div>
-
         </div>
-
     </div>
-
 </div>
 
 </body>
-
 </html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videojuegos</title>
+</head>
+
+<body>
+
+    <h1>Listado de Videojuegos</h1>
+
+    <ul>
+
+        {% for videojuego in videojuegos %}
+
+            <li>
+
+                {{ videojuego["nombre"] }}
+
+                -
+
+                {{ videojuego["plataforma"] }}
+
+                -
+
+                {{ videojuego["anio"] }}
+
+            </li>
+
+        {% endfor %}
+
+    </ul>
+
+</body>
+
+</html>

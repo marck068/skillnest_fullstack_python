@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Destino ha sido Revelado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Fondo espacial decorativo -->
+    <div class="fondo-espacial">
+        <div class="estrellas"></div>
+        <div class="particula p1"></div>
+        <div class="particula p2"></div>
+        <div class="particula p3"></div>
+        <div class="particula p4"></div>
+    </div>
+
+    <div class="contenedor">
+        <div class="tarjeta">
+
+            <div class="tarjeta-encabezado">
+                <div class="icono-circular dorado">🔮</div>
+                <h1>Tu Destino ha sido Revelado</h1>
+                <p class="subtitulo">Las estrellas han hablado, {{ nombre }}</p>
+            </div>
+
+            <div class="tarjeta-cuerpo">
+
+                <!-- Predicción principal -->
+                <div class="caja-prediccion">
+                    <span class="estrella-icono">⭐</span>
+                    <p>{{ prediccion }}</p>
+                </div>
+
+                <!-- Color y Animal -->
+                <div class="grid-dos">
+                    <div class="mini-tarjeta">
+                        <h3>❤️ Tu Color</h3>
+                        <div class="punto-color" style="background-color: {{ color }};"></div>
+                        <p>Tu preferencia por el color <strong>{{ color }}</strong> {{ descripcion_color }}</p>
+                    </div>
+
+                    <div class="mini-tarjeta">
+                        <h3>🐾 Tu Animal</h3>
+                        <p>Tu conexión con el <strong>{{ animal }}</strong> {{ descripcion_animal }}</p>
+                    </div>
+                </div>
+
+                <!-- Número de la suerte -->
+                <div class="seccion-numero">
+                    <h3>🍀 Tu número de la suerte</h3>
+                    <div class="circulo-numero">{{ numero_suerte }}</div>
+                    <p class="texto-secundario">Este número te acompañará en momentos importantes.</p>
+                </div>
+
+                <!-- Edad -->
+                <div class="mini-tarjeta ancho-completo">
+                    <p>🎂 {{ prediccion_edad }}</p>
+                </div>
+
+                <a href="/" class="boton-principal boton-enlace">↻ Consultar de nuevo</a>
+
+                <p class="pie-texto">Las estrellas te han hablado hoy: {{ nombre }}.</p>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,273 @@
+/* ==========================================================
+   RESET BÁSICO Y TIPOGRAFÍA GENERAL
+   ========================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 16px;
+}
+
+/* ==========================================================
+   CONTENEDOR GENERAL
+   ========================================================== */
+.contenedor {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ==========================================================
+   ENCABEZADO CON DEGRADADO
+   ========================================================== */
+.encabezado {
+    background: linear-gradient(135deg, #4a6cf7, #8a4af7);
+    color: #ffffff;
+    text-align: center;
+    padding: 32px 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(74, 108, 247, 0.25);
+}
+
+.encabezado .icono {
+    font-size: 42px;
+    margin-bottom: 8px;
+}
+
+.encabezado h1 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.encabezado p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* ==========================================================
+   TARJETA PRINCIPAL DEL JUEGO
+   ========================================================== */
+.tarjeta {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 28px 24px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.mensaje {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333333;
+}
+
+.intentos {
+    text-align: center;
+    font-size: 14px;
+    color: #666666;
+}
+
+.intentos span {
+    font-weight: 700;
+    color: #4a6cf7;
+}
+
+/* ==========================================================
+   RESULTADOS DINÁMICOS
+   ========================================================== */
+.resultado {
+    text-align: center;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.resultado-correcto {
+    background-color: #e2f7e9;
+    color: #1e8e4c;
+    border: 1px solid #b6ecc7;
+}
+
+.resultado-mayor {
+    background-color: #e6edff;
+    color: #2c4fd6;
+    border: 1px solid #c3d1ff;
+}
+
+.resultado-menor {
+    background-color: #fde8e8;
+    color: #c62828;
+    border: 1px solid #f7c2c2;
+}
+
+/* ==========================================================
+   BOTONES NUMÉRICOS RÁPIDOS
+   ========================================================== */
+.botones-rapidos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.boton-numero {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid #4a6cf7;
+    background-color: #ffffff;
+    color: #4a6cf7;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.boton-numero:hover {
+    background-color: #4a6cf7;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* ==========================================================
+   FORMULARIO
+   ========================================================== */
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formulario label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #444444;
+}
+
+.formulario input[type="number"] {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 2px solid #dddddd;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.formulario input[type="number"]:focus {
+    border-color: #4a6cf7;
+}
+
+/* ==========================================================
+   BOTÓN PRINCIPAL (ADIVINAR)
+   ========================================================== */
+.boton-principal {
+    background: linear-gradient(135deg, #4a6cf7, #8a4af7);
+    color: #ffffff;
+    border: none;
+    padding: 13px 18px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.boton-principal:hover {
+    opacity: 0.9;
+}
+
+/* ==========================================================
+   BOTÓN DE REINICIO
+   ========================================================== */
+.boton-reiniciar {
+    display: block;
+    text-align: center;
+    background-color: #e53935;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: opacity 0.2s ease;
+}
+
+.boton-reiniciar:hover {
+    opacity: 0.9;
+}
+
+/* ==========================================================
+   SECCIÓN DE REGLAS
+   ========================================================== */
+.reglas {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 22px 24px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.reglas h2 {
+    font-size: 17px;
+    margin-bottom: 12px;
+    color: #333333;
+}
+
+.reglas ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.reglas li {
+    font-size: 14px;
+    color: #555555;
+    padding-left: 18px;
+    position: relative;
+}
+
+.reglas li::before {
+    content: "•";
+    color: #4a6cf7;
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+}
+
+/* ==========================================================
+   DISEÑO RESPONSIVE PARA CELULARES
+   ========================================================== */
+@media (max-width: 480px) {
+    .encabezado h1 {
+        font-size: 22px;
+    }
+
+    .boton-numero {
+        width: 38px;
+        height: 38px;
+        font-size: 14px;
+    }
+
+    .tarjeta,
+    .reglas {
+        padding: 20px 18px;
+    }
+}

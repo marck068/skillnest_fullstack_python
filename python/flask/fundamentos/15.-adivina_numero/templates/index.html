@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivina el Número</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="contenedor">
+
+        <!-- ================================================== -->
+        <!-- ENCABEZADO -->
+        <!-- ================================================== -->
+        <header class="encabezado">
+            <div class="icono">🎯</div>
+            <h1>Adivina el Número</h1>
+            <p>Encuentra el número secreto entre 1 y 10</p>
+        </header>
+
+        <!-- ================================================== -->
+        <!-- TARJETA PRINCIPAL DEL JUEGO -->
+        <!-- ================================================== -->
+        <main class="tarjeta">
+
+            <!-- Mensaje informativo dinámico -->
+            <p class="mensaje">{{ mensaje }}</p>
+
+            <!-- Contador de intentos -->
+            <p class="intentos">Intentos: <span>{{ intentos }}</span></p>
+
+            <!-- ============================================== -->
+            <!-- RESULTADO DINÁMICO (Jinja2 if / elif / else) -->
+            <!-- ============================================== -->
+            {% if resultado == "correcto" %}
+                <div class="resultado resultado-correcto">
+                    🎉 ¡Has acertado!
+                </div>
+            {% elif resultado == "mayor" %}
+                <div class="resultado resultado-mayor">
+                    ⬆️ El número secreto es mayor.
+                </div>
+            {% elif resultado == "menor" %}
+                <div class="resultado resultado-menor">
+                    ⬇️ El número secreto es menor.
+                </div>
+            {% endif %}
+
+            <!-- ============================================== -->
+            <!-- BOTONES RÁPIDOS DEL 1 AL 10 (generados con Jinja2) -->
+            <!-- ============================================== -->
+            <div class="botones-rapidos">
+                {% for numero in range(1, 11) %}
+                    <button
+                        type="button"
+                        class="boton-numero"
+                        onclick="document.getElementById('numero').value = {{ numero }};"
+                    >{{ numero }}</button>
+                {% endfor %}
+            </div>
+
+            <!-- ============================================== -->
+            <!-- FORMULARIO PARA ENVIAR EL INTENTO -->
+            <!-- ============================================== -->
+            <form class="formulario" method="POST" action="{{ url_for('adivinar') }}">
+                <label for="numero">Tu elección</label>
+                <input
+                    type="number"
+                    id="numero"
+                    name="numero"
+                    min="1"
+                    max="10"
+                    required
+                >
+                <button type="submit" class="boton-principal">🔍 Adivinar</button>
+            </form>
+
+            <!-- Botón de reinicio -->
+            <a href="{{ url_for('reiniciar') }}" class="boton-reiniciar">↻ Reiniciar Juego</a>
+
+        </main>
+
+        <!-- ================================================== -->
+        <!-- SECCIÓN DE REGLAS -->
+        <!-- ================================================== -->
+        <section class="reglas">
+            <h2>📋 Reglas del juego</h2>
+            <ul>
+                <li>Se genera un número aleatorio entre 1 y 10.</li>
+                <li>El usuario debe intentar descubrirlo.</li>
+                <li>Después de cada intento recibirá una pista.</li>
+                <li>El contador aumenta después de cada intento.</li>
+                <li>El juego puede reiniciarse cuando el usuario quiera.</li>
+            </ul>
+        </section>
+
+    </div>
+
+</body>
+</html>

@@ -97,12 +97,11 @@ def enviar():
     """
     nombre = request.form.get("nombre", "").strip()
     edad = request.form.get("edad", "").strip()
-    signo = request.form.get("signo", "").strip()
     color = request.form.get("color", "").strip()
     animal = request.form.get("animal", "").strip()
 
     # Validaciones básicas
-    if not nombre or not edad or not signo or not color or not animal:
+    if not nombre or not edad or not color or not animal:
         return redirect("/")
 
     if not edad.isdigit() or int(edad) <= 0 or int(edad) > 120:
@@ -111,7 +110,6 @@ def enviar():
     # Guardamos los datos en la sesión del usuario
     session["nombre"] = nombre
     session["edad"] = int(edad)
-    session["signo"] = signo
     session["color"] = color
     session["animal"] = animal
 
@@ -126,7 +124,6 @@ def futuro():
     """
     nombre = session.get("nombre")
     edad = session.get("edad")
-    signo = session.get("signo")
     color = session.get("color")
     animal = session.get("animal")
 
@@ -144,7 +141,6 @@ def futuro():
         "futuro.html",
         nombre=nombre,
         edad=edad,
-        signo=signo,
         color=color,
         animal=animal,
         prediccion=prediccion,

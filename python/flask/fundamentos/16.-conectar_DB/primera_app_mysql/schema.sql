@@ -8,7 +8,7 @@ USE primera_flask;
 
 
 -- ==========================================================
--- TABLA MASCOTAS
+-- CREAR TABLA
 -- ==========================================================
 
 CREATE TABLE IF NOT EXISTS mascotas (
@@ -29,6 +29,10 @@ CREATE TABLE IF NOT EXISTS mascotas (
 );
 
 
+-- ==========================================================
+-- INSERTAR DATOS DE PRUEBA
+-- ==========================================================
+
 INSERT INTO mascotas
     (nombre, tipo, color)
 VALUES
@@ -37,34 +41,3 @@ VALUES
     ("Luna", "Perro", "Blanco"),
     ("Nala", "Gato", "Naranjo"),
     ("Coco", "Conejo", "Blanco");
-
-
--- ==========================================================
--- TABLA USUARIOS (ejercicio de consolidación)
--- ==========================================================
-
-CREATE TABLE IF NOT EXISTS usuarios (
-
-    id INT AUTO_INCREMENT PRIMARY KEY,
-
-    nombre VARCHAR(100) NOT NULL,
-
-    email VARCHAR(150) NOT NULL,
-
-    edad INT NOT NULL,
-
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-        ON UPDATE CURRENT_TIMESTAMP
-
-);
-
-
-INSERT INTO usuarios
-    (nombre, email, edad)
-VALUES
-    ("Ana Pérez", "ana.perez@example.com", 28),
-    ("Carlos Soto", "carlos.soto@example.com", 34),
-    ("María Rojas", "maria.rojas@example.com", 22),
-    ("Jorge Muñoz", "jorge.munoz@example.com", 41);

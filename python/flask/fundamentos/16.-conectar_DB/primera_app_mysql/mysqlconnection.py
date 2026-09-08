@@ -35,7 +35,7 @@ class MySQLConnection:
 
             user="root",
 
-            password="root",
+            password="1234",
 
             database=db,
 

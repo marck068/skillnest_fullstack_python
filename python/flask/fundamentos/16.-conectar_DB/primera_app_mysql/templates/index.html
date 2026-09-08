@@ -18,6 +18,9 @@
 
     <h1>Listado de Mascotas</h1>
 
+    <p>
+        <a href="/usuarios">Ver usuarios</a>
+    </p>
 
     {% if mascotas %}
 
@@ -27,9 +30,9 @@
 
                 <li>
 
-                    <strong>
-                        {{ mascota.nombre }}
-                    </strong>
+                    <a href="/mascotas/{{ mascota.id }}">
+                        <strong>{{ mascota.nombre }}</strong>
+                    </a>
 
                     -
 
@@ -52,7 +55,6 @@
         </p>
 
     {% endif %}
-
 
 </body>
 

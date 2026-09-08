@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Detalle de Mascota</title>
+
+</head>
+
+<body>
+
+    <p>
+        <a href="/">&larr; Volver al listado</a>
+    </p>
+
+    {% if mascota %}
+
+        <h1>{{ mascota.nombre }}</h1>
+
+        <ul>
+            <li><strong>ID:</strong> {{ mascota.id }}</li>
+            <li><strong>Tipo:</strong> {{ mascota.tipo }}</li>
+            <li><strong>Color:</strong> {{ mascota.color }}</li>
+            <li><strong>Creado:</strong> {{ mascota.created_at }}</li>
+            <li><strong>Actualizado:</strong> {{ mascota.updated_at }}</li>
+        </ul>
+
+    {% else %}
+
+        <p>
+            No se encontró ninguna mascota con ese ID.
+        </p>
+
+    {% endif %}
+
+</body>
+
+</html>

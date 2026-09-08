@@ -6,6 +6,7 @@
 from flask import Flask, render_template
 
 from mascota import Mascota
+from usuario import Usuario
 
 
 # ==========================================================
@@ -16,7 +17,7 @@ app = Flask(__name__)
 
 
 # ==========================================================
-# RUTA PRINCIPAL
+# RUTA PRINCIPAL - LISTADO DE MASCOTAS
 # ==========================================================
 
 @app.route("/")
@@ -26,27 +27,51 @@ def index():
     y las envía hacia la plantilla HTML.
     """
 
-    # ------------------------------------------------------
-    # Consultar base de datos mediante el modelo.
-    # ------------------------------------------------------
-
     mascotas = Mascota.get_all()
 
-
-    # ------------------------------------------------------
-    # Mostrar resultados en la terminal.
-    # ------------------------------------------------------
-
     print(mascotas)
-
-
-    # ------------------------------------------------------
-    # Enviar resultados a Jinja2.
-    # ------------------------------------------------------
 
     return render_template(
         "index.html",
         mascotas=mascotas
+    )
+
+
+# ==========================================================
+# RUTA DE DETALLE - UNA MASCOTA POR ID (usa el desafío)
+# ==========================================================
+
+@app.route("/mascotas/<int:id>")
+def mostrar_mascota(id):
+    """
+    Busca una mascota específica utilizando
+    Mascota.get_by_id() y muestra sus datos.
+    """
+
+    mascota = Mascota.get_by_id(id)
+
+    return render_template(
+        "mascota.html",
+        mascota=mascota
+    )
+
+
+# ==========================================================
+# RUTA - LISTADO DE USUARIOS (ejercicio de consolidación)
+# ==========================================================
+
+@app.route("/usuarios")
+def usuarios():
+    """
+    Consulta todos los usuarios de la base de datos
+    y los envía hacia la plantilla HTML.
+    """
+
+    usuarios = Usuario.get_all()
+
+    return render_template(
+        "usuarios.html",
+        usuarios=usuarios
     )
 
 

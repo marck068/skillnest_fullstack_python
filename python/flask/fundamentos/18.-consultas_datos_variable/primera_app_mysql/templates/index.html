@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Mascotas
+    </title>
+
+</head>
+
+
+<body>
+
+    {% if tipo %}
+
+        <h1>
+            Mascotas de tipo: {{ tipo }}
+        </h1>
+
+    {% else %}
+
+        <h1>
+            Listado de Mascotas
+        </h1>
+
+    {% endif %}
+
+
+    {% if mascotas %}
+
+        <ul>
+
+            {% for mascota in mascotas %}
+
+                <li>
+
+                    <strong>
+                        {{ mascota.nombre }}
+                    </strong>
+
+                    -
+
+                    {{ mascota.tipo }}
+
+                    -
+
+                    {{ mascota.color }}
+
+                    -
+
+                    <a
+                        href="{{ url_for(
+                            'mostrar_mascota',
+                            id=mascota.id
+                        ) }}"
+                    >
+                        Ver detalles
+                    </a>
+
+                </li>
+
+            {% endfor %}
+
+        </ul>
+
+    {% else %}
+
+        <p>
+            No existen mascotas registradas.
+        </p>
+
+    {% endif %}
+
+
+    <hr>
+
+
+    <h2>
+        Buscar por tipo
+    </h2>
+
+
+    <ul>
+
+        <li>
+
+            <a
+                href="{{ url_for(
+                    'mascotas_por_tipo',
+                    tipo='Perro'
+                ) }}"
+            >
+                Perros
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a
+                href="{{ url_for(
+                    'mascotas_por_tipo',
+                    tipo='Gato'
+                ) }}"
+            >
+                Gatos
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a
+                href="{{ url_for(
+                    'mascotas_por_tipo',
+                    tipo='Conejo'
+                ) }}"
+            >
+                Conejos
+            </a>
+
+        </li>
+
+    </ul>
+
+
+    <hr>
+
+
+    <h2>
+        Buscar por ID
+    </h2>
+
+
+    <ul>
+
+        {% for mascota in mascotas %}
+
+            <li>
+
+                <a
+                    href="{{ url_for(
+                        'mostrar_mascota',
+                        id=mascota.id
+                    ) }}"
+                >
+
+                    Mascota #{{ mascota.id }}
+
+                    -
+                    
+                    {{ mascota.nombre }}
+
+                </a>
+
+            </li>
+
+        {% endfor %}
+
+    </ul>
+
+</body>
+
+</html>

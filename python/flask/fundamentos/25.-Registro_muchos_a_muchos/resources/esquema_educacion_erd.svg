@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" font-family="Arial, Helvetica, sans-serif" font-size="14">
+  <rect width="900" height="340" fill="#ffffff"/>
+  <text x="450" y="28" text-anchor="middle" font-size="18" font-weight="bold">ERD — esquema_educacion (Estudiantes N:N Cursos)</text>
+
+  <!-- estudiantes -->
+  <rect x="30" y="60" width="240" height="190" rx="6" fill="#f8f9fa" stroke="#212529"/>
+  <rect x="30" y="60" width="240" height="32" rx="6" fill="#212529"/>
+  <text x="150" y="82" text-anchor="middle" fill="#fff" font-weight="bold">estudiantes</text>
+  <text x="44" y="118">🔑 id_estudiante  INT PK AI</text>
+  <text x="44" y="146">nombre  VARCHAR(100)</text>
+  <text x="44" y="174">email  VARCHAR(100) UNIQUE</text>
+  <text x="44" y="202">created_at  TIMESTAMP</text>
+
+  <!-- inscripciones -->
+  <rect x="330" y="80" width="240" height="120" rx="6" fill="#fff8e1" stroke="#212529"/>
+  <rect x="330" y="80" width="240" height="32" rx="6" fill="#b58900"/>
+  <text x="450" y="102" text-anchor="middle" fill="#fff" font-weight="bold">inscripciones</text>
+  <text x="344" y="138">🔑 estudiante_id  INT PK, FK</text>
+  <text x="344" y="166">🔑 curso_id  INT PK, FK</text>
+  <text x="344" y="190" font-size="12" fill="#555">PRIMARY KEY (estudiante_id, curso_id)</text>
+
+  <!-- cursos -->
+  <rect x="630" y="60" width="240" height="190" rx="6" fill="#f8f9fa" stroke="#212529"/>
+  <rect x="630" y="60" width="240" height="32" rx="6" fill="#212529"/>
+  <text x="750" y="82" text-anchor="middle" fill="#fff" font-weight="bold">cursos</text>
+  <text x="644" y="118">🔑 id_curso  INT PK AI</text>
+  <text x="644" y="146">nombre_curso  VARCHAR(100) UNIQUE</text>
+  <text x="644" y="174">descripcion  TEXT</text>
+  <text x="644" y="202">created_at  TIMESTAMP</text>
+
+  <!-- relaciones -->
+  <line x1="270" y1="138" x2="330" y2="138" stroke="#212529" stroke-width="2"/>
+  <text x="276" y="130" font-size="12">1</text>
+  <text x="312" y="130" font-size="12">N</text>
+  <line x1="570" y1="166" x2="630" y2="166" stroke="#212529" stroke-width="2"/>
+  <text x="576" y="158" font-size="12">N</text>
+  <text x="614" y="158" font-size="12">1</text>
+
+  <text x="450" y="290" text-anchor="middle" fill="#555">Estudiante 1:N Inscripciones N:1 Curso  ⇒  Estudiante N:N Curso</text>
+  <text x="450" y="312" text-anchor="middle" fill="#555" font-size="12">FK con ON DELETE CASCADE / ON UPDATE CASCADE</text>
+</svg>

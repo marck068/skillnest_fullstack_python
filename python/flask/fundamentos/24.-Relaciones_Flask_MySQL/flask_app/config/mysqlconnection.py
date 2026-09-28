@@ -2,8 +2,6 @@
 # CONEXIÓN CON MYSQL
 # ==========================================================
 
-import os
-
 import pymysql.cursors
 
 
@@ -16,18 +14,12 @@ class MySQLConnection:
         """
         Recibe el nombre de la base de datos
         y establece la conexión.
-
-        Los datos de acceso se pueden cambiar con variables
-        de entorno (MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD,
-        MYSQL_PORT). Si no existen, se usan los valores
-        de desarrollo local del README.
         """
 
         self.connection = pymysql.connect(
-            host=os.environ.get("MYSQL_HOST", "localhost"),
-            port=int(os.environ.get("MYSQL_PORT", 3306)),
-            user=os.environ.get("MYSQL_USER", "root"),
-            password=os.environ.get("MYSQL_PASSWORD", ""),
+            host="localhost",
+            user="root",
+            password="",
             database=db,
             charset="utf8mb4",
             cursorclass=pymysql.cursors.DictCursor,

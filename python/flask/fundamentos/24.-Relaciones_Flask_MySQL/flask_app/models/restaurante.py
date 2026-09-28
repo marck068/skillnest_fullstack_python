@@ -157,9 +157,7 @@ class Restaurante:
             LEFT JOIN tacos
                 ON tacos.restaurante_id = restaurantes.id
 
-            WHERE restaurantes.id = %(id)s
-
-            ORDER BY tacos.id;
+            WHERE restaurantes.id = %(id)s;
         """
 
 
@@ -172,8 +170,7 @@ class Restaurante:
 
 
         # --------------------------------------------------
-        # Si no existe el restaurante (lista vacía)
-        # o la consulta falló (False).
+        # Si no existe el restaurante.
         # --------------------------------------------------
 
         if not resultados:
@@ -182,7 +179,7 @@ class Restaurante:
 
 
         # --------------------------------------------------
-        # Crear objeto Restaurante (una sola vez).
+        # Crear objeto Restaurante.
         # --------------------------------------------------
 
         restaurante_data = {

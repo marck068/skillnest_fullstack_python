@@ -29,11 +29,6 @@ h1 {
 }
 
 
-.form-alert {
-    max-width: 650px;
-}
-
-
 .page-header {
     display: flex;
     justify-content: space-between;

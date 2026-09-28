@@ -31,8 +31,8 @@ class Taco:
         """
         Crea un nuevo taco.
 
-        Ahora necesitamos también el ID
-        del restaurante al que pertenece.
+        Necesita también el ID del restaurante
+        al que pertenece (clave foránea).
         """
 
         query = """

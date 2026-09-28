@@ -2,13 +2,15 @@
 -- CREAR BASE DE DATOS
 -- ==========================================================
 
-CREATE DATABASE IF NOT EXISTS esquema_tacos;
+CREATE DATABASE IF NOT EXISTS esquema_tacos
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci;
 
 USE esquema_tacos;
 
 
 -- ==========================================================
--- TABLA RESTAURANTES
+-- TABLA RESTAURANTES  (lado "1" de la relación)
 -- ==========================================================
 
 CREATE TABLE IF NOT EXISTS restaurantes (
@@ -21,7 +23,7 @@ CREATE TABLE IF NOT EXISTS restaurantes (
 
 
 -- ==========================================================
--- TABLA TACOS
+-- TABLA TACOS  (lado "N" de la relación)
 -- ==========================================================
 
 CREATE TABLE IF NOT EXISTS tacos (

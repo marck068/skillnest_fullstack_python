@@ -2,72 +2,45 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>
-        Crear Taco
-    </title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Taco</title>
 
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
         rel="stylesheet"
     >
-
-
-    <link
-        rel="stylesheet"
-        href="{{ url_for('static', filename='css/style.css') }}"
-    >
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
 
 <div class="container py-5">
 
-
-    <div class="d-flex justify-content-between align-items-center mb-4">
-
+    <div class="page-header">
         <div>
-
-            <h1>
-                Crear Taco
-            </h1>
-
-            <p class="text-muted">
-                Selecciona el restaurante al que pertenece.
-            </p>
-
+            <h1>Crear Taco</h1>
+            <p class="text-muted">Selecciona el restaurante al que pertenece.</p>
         </div>
 
-
         <div>
-
-            <a
-                href="{{ url_for('tacos') }}"
-                class="btn btn-outline-primary"
-            >
-                Ver tacos
-            </a>
-
-
-            <a
-                href="{{ url_for('restaurantes') }}"
-                class="btn btn-outline-secondary"
-            >
-                Restaurantes
-            </a>
-
+            <a href="{{ url_for('tacos') }}" class="btn btn-outline-primary">Ver tacos</a>
+            <a href="{{ url_for('restaurantes') }}" class="btn btn-outline-secondary">Restaurantes</a>
         </div>
-
     </div>
+
+
+    <!-- ==================================================
+         MENSAJES FLASH
+    =================================================== -->
+
+    {% with mensajes = get_flashed_messages(with_categories=true) %}
+        {% for categoria, mensaje in mensajes %}
+            <div class="alert alert-{{ categoria }} mx-auto form-alert" role="alert">
+                {{ mensaje }}
+            </div>
+        {% endfor %}
+    {% endwith %}
 
 
     <!-- ==================================================
@@ -76,213 +49,96 @@
 
     <div class="form-card">
 
-
-        <form
-            action="{{ url_for('crear') }}"
-            method="POST"
-        >
-
-
-            <!-- TORTILLA -->
+        <form action="{{ url_for('crear') }}" method="POST">
 
             <div class="mb-3">
-
-                <label
-                    for="tortilla"
-                    class="form-label"
-                >
-
-                    Tortilla
-
-                </label>
-
-
-                <input
-                    type="text"
-                    id="tortilla"
-                    name="tortilla"
-                    class="form-control"
-                    maxlength="45"
-                    required
-                >
-
+                <label for="tortilla" class="form-label">Tortilla</label>
+                <input type="text" id="tortilla" name="tortilla"
+                       class="form-control" maxlength="45" required>
             </div>
-
-
-            <!-- GUISO -->
 
             <div class="mb-3">
-
-                <label
-                    for="guiso"
-                    class="form-label"
-                >
-
-                    Guiso
-
-                </label>
-
-
-                <input
-                    type="text"
-                    id="guiso"
-                    name="guiso"
-                    class="form-control"
-                    maxlength="45"
-                    required
-                >
-
+                <label for="guiso" class="form-label">Guiso</label>
+                <input type="text" id="guiso" name="guiso"
+                       class="form-control" maxlength="45" required>
             </div>
-
-
-            <!-- SALSA -->
 
             <div class="mb-3">
-
-                <label
-                    for="salsa"
-                    class="form-label"
-                >
-
-                    Salsa
-
-                </label>
-
-
-                <input
-                    type="text"
-                    id="salsa"
-                    name="salsa"
-                    class="form-control"
-                    maxlength="45"
-                    required
-                >
-
+                <label for="salsa" class="form-label">Salsa</label>
+                <input type="text" id="salsa" name="salsa"
+                       class="form-control" maxlength="45" required>
             </div>
-
-
-            <!-- RESTAURANTE -->
 
             <div class="mb-4">
+                <label for="restaurante_id" class="form-label">Restaurante</label>
 
-                <label
-                    for="restaurante_id"
-                    class="form-label"
-                >
+                <select id="restaurante_id" name="restaurante_id"
+                        class="form-select" required>
 
-                    Restaurante
+                    <option value="">Selecciona un restaurante</option>
 
-                </label>
-
-
-                <select
-                    id="restaurante_id"
-                    name="restaurante_id"
-                    class="form-select"
-                    required
-                >
-
-                    <option value="">
-                        Selecciona un restaurante
-                    </option>
-
-
-                    {% for restaurante in todos_restaurantes|default([]) %}
-
-                        <option
-                            value="{{ restaurante.id }}"
-                        >
-
+                    {% for restaurante in todos_restaurantes %}
+                        <option value="{{ restaurante.id }}">
                             {{ restaurante.nombre }}
-
                         </option>
-
                     {% endfor %}
 
                 </select>
-
             </div>
 
-
-            <button
-                type="submit"
-                class="btn btn-primary"
-            >
-
-                Crear Taco
-
-            </button>
-
+            <button type="submit" class="btn btn-primary">Crear Taco</button>
 
         </form>
-
 
     </div>
 
 
     <!-- ==================================================
-         LISTADO DE TACOS (cuando se accede vía /tacos)
+         LISTADO DE TACOS (solo en la ruta /tacos)
     =================================================== -->
 
     {% if tacos is defined %}
 
-        <hr class="my-5">
-
-        <h2 class="h4 mb-3">
-            Todos los tacos
-        </h2>
+        <h2 class="h3 mt-5 mb-3">Todos los tacos</h2>
 
         {% if tacos %}
 
-            <div class="row g-4">
-
-                {% for taco in tacos %}
-
-                    <div class="col-12 col-md-6 col-lg-4">
-
-                        <div class="card h-100 shadow-sm">
-
-                            <div class="card-body">
-
-                                <h3 class="h5">
-                                    Taco #{{ taco.id }}
-                                </h3>
-
-                                <p class="mb-1">
-                                    <strong>Tortilla:</strong>
-                                    {{ taco.tortilla }}
-                                </p>
-
-                                <p class="mb-1">
-                                    <strong>Guiso:</strong>
-                                    {{ taco.guiso }}
-                                </p>
-
-                                <p class="mb-0">
-                                    <strong>Salsa:</strong>
-                                    {{ taco.salsa }}
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                {% endfor %}
-
+            <div class="table-responsive">
+                <table class="table table-striped align-middle bg-white shadow-sm">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tortilla</th>
+                            <th>Guiso</th>
+                            <th>Salsa</th>
+                            <th>Restaurante</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for taco in tacos %}
+                            <tr>
+                                <td>{{ taco.id }}</td>
+                                <td>{{ taco.tortilla }}</td>
+                                <td>{{ taco.guiso }}</td>
+                                <td>{{ taco.salsa }}</td>
+                                <td>
+                                    <a href="{{ url_for('restaurante', id=taco.restaurante_id) }}">
+                                        {{ nombres_restaurantes[taco.restaurante_id] }}
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
 
         {% else %}
 
-            <div class="alert alert-info">
-                Todavía no hay tacos registrados.
-            </div>
+            <div class="alert alert-info">Todavía no hay tacos registrados.</div>
 
         {% endif %}
 
     {% endif %}
-
 
 </div>
 

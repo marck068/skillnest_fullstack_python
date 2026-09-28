@@ -1,0 +1,6 @@
+Aquí debe ir el ERD: esquema_arepas_erd.mwb (opcionalmente .png).
+
+Cómo generarlo en MySQL Workbench:
+1. Ejecuta flask_app/bd/esquema_arepas.sql en tu servidor MySQL.
+2. Database > Reverse Engineer... > selecciona esquema_arepas.
+3. File > Save Model As... > esquema_arepas_erd.mwb (guárdalo en esta carpeta).

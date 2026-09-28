@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ cancion.titulo }}{% endblock %}
+
+{% block contenido %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1>{{ cancion.titulo }}</h1>
+        <p class="text-muted mb-0">{{ cancion.artista }}</p>
+    </div>
+    <a href="{{ url_for('canciones') }}" class="btn btn-outline-primary">Canciones</a>
+</div>
+
+<div class="row g-4">
+
+    <!-- USUARIOS QUE LA TIENEN COMO FAVORITA -->
+    <div class="col-lg-7">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <h2 class="h4 mb-4">En los favoritos de</h2>
+
+                {% if cancion.usuarios %}
+                    <ul class="list-group">
+                        {% for usuario in cancion.usuarios %}
+                            <li class="list-group-item">
+                                <a href="{{ url_for('mostrar_usuario', id=usuario.id) }}">
+                                    {{ usuario.nombre }}
+                                </a>
+                                <span class="text-muted small">— {{ usuario.email }}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <div class="alert alert-info mb-0">
+                        Ningún usuario ha marcado esta canción como favorita.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- AGREGAR USUARIO (BONUS: solo los que aún no la tienen) -->
+    <div class="col-lg-5">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <h2 class="h4 mb-4">Agregar a favoritos de un usuario</h2>
+
+                {% if usuarios %}
+                    <form action="{{ url_for('agregar_favorito') }}" method="POST">
+                        <input type="hidden" name="cancion_id" value="{{ cancion.id }}">
+                        <input type="hidden" name="origen" value="cancion">
+
+                        <div class="mb-4">
+                            <label for="usuario_id" class="form-label">Usuario</label>
+                            <select id="usuario_id" name="usuario_id"
+                                    class="form-select" required>
+                                <option value="">Selecciona un usuario</option>
+                                {% for usuario in usuarios %}
+                                    <option value="{{ usuario.id }}">{{ usuario.nombre }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+                    </form>
+                {% else %}
+                    <div class="alert alert-secondary mb-0">
+                        Todos los usuarios ya tienen esta canción como favorita.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

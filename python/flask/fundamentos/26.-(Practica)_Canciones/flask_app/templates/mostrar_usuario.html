@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ usuario.nombre }}{% endblock %}
+
+{% block contenido %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1>{{ usuario.nombre }}</h1>
+        <p class="text-muted mb-0">{{ usuario.email }}</p>
+    </div>
+    <a href="{{ url_for('usuarios') }}" class="btn btn-outline-primary">Inicio</a>
+</div>
+
+<div class="row g-4">
+
+    <!-- CANCIONES FAVORITAS -->
+    <div class="col-lg-7">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <h2 class="h4 mb-4">Canciones favoritas</h2>
+
+                {% if usuario.favoritos %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Canción</th>
+                                    <th>Artista</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for cancion in usuario.favoritos %}
+                                    <tr>
+                                        <td>
+                                            <a href="{{ url_for('mostrar_cancion', id=cancion.id) }}">
+                                                {{ cancion.titulo }}
+                                            </a>
+                                        </td>
+                                        <td>{{ cancion.artista }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="alert alert-info mb-0">
+                        Este usuario todavía no tiene canciones favoritas.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- AGREGAR FAVORITA -->
+    <div class="col-lg-5">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <h2 class="h4 mb-4">Agregar canción favorita</h2>
+
+                <form action="{{ url_for('agregar_favorito') }}" method="POST">
+                    <input type="hidden" name="usuario_id" value="{{ usuario.id }}">
+                    <input type="hidden" name="origen" value="usuario">
+
+                    <div class="mb-4">
+                        <label for="cancion_id" class="form-label">Canción</label>
+                        <select id="cancion_id" name="cancion_id"
+                                class="form-select" required>
+                            <option value="">Selecciona una canción</option>
+                            {% for cancion in canciones %}
+                                <option value="{{ cancion.id }}">
+                                    {{ cancion.titulo }} — {{ cancion.artista }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </form>
+
+                <div class="mt-4">
+                    <a href="{{ url_for('canciones') }}">Agregar Canción</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

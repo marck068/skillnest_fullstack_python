@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block titulo %}Usuarios{% endblock %}
+
+{% block contenido %}
+<div class="row g-4">
+
+    <!-- NUEVO USUARIO -->
+    <div class="col-lg-5">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <h1 class="h3 mb-4">Nuevo Usuario</h1>
+
+                <form action="{{ url_for('crear_usuario') }}" method="POST">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" id="nombre" name="nombre"
+                               class="form-control" maxlength="45" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" id="email" name="email"
+                               class="form-control" maxlength="45" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="contrasena" class="form-label">Contraseña</label>
+                        <input type="password" id="contrasena" name="contrasena"
+                               class="form-control" maxlength="45" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- TODOS LOS USUARIOS -->
+    <div class="col-lg-7">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <h2 class="h3 mb-4">Todos los Usuarios</h2>
+
+                {% if usuarios %}
+                    <div class="list-group">
+                        {% for usuario in usuarios %}
+                            <a href="{{ url_for('mostrar_usuario', id=usuario.id) }}"
+                               class="list-group-item list-group-item-action">
+                                {{ usuario.nombre }}
+                                <span class="text-muted small">— {{ usuario.email }}</span>
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="alert alert-info mb-0">No existen usuarios registrados.</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" font-family="Arial, Helvetica, sans-serif">
+  <rect width="760" height="340" fill="#ffffff"/>
+  <text x="380" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#212529">ERD · esquema_tacos (relación 1:N)</text>
+
+  <!-- restaurantes -->
+  <rect x="40" y="60" width="260" height="200" rx="6" fill="#f8f9fa" stroke="#495057" stroke-width="1.5"/>
+  <rect x="40" y="60" width="260" height="34" rx="6" fill="#495057"/>
+  <text x="170" y="83" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">restaurantes</text>
+  <g font-size="13" fill="#212529">
+    <text x="55" y="120">🔑 id</text>          <text x="285" y="120" text-anchor="end" fill="#6c757d">INT · PK · AI</text>
+    <text x="55" y="152">nombre</text>          <text x="285" y="152" text-anchor="end" fill="#6c757d">VARCHAR(45) · NN</text>
+    <text x="55" y="184">created_at</text>      <text x="285" y="184" text-anchor="end" fill="#6c757d">DATETIME</text>
+    <text x="55" y="216">updated_at</text>      <text x="285" y="216" text-anchor="end" fill="#6c757d">DATETIME</text>
+  </g>
+
+  <!-- tacos -->
+  <rect x="460" y="60" width="260" height="264" rx="6" fill="#f8f9fa" stroke="#495057" stroke-width="1.5"/>
+  <rect x="460" y="60" width="260" height="34" rx="6" fill="#495057"/>
+  <text x="590" y="83" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">tacos</text>
+  <g font-size="13" fill="#212529">
+    <text x="475" y="120">🔑 id</text>              <text x="705" y="120" text-anchor="end" fill="#6c757d">INT · PK · AI</text>
+    <text x="475" y="152">tortilla</text>            <text x="705" y="152" text-anchor="end" fill="#6c757d">VARCHAR(45)</text>
+    <text x="475" y="184">guiso</text>               <text x="705" y="184" text-anchor="end" fill="#6c757d">VARCHAR(45)</text>
+    <text x="475" y="216">salsa</text>               <text x="705" y="216" text-anchor="end" fill="#6c757d">VARCHAR(45)</text>
+    <text x="475" y="248" font-weight="bold">🔗 restaurante_id</text> <text x="705" y="248" text-anchor="end" fill="#6c757d">INT · FK · NN</text>
+    <text x="475" y="280">created_at</text>          <text x="705" y="280" text-anchor="end" fill="#6c757d">DATETIME</text>
+    <text x="475" y="312">updated_at</text>          <text x="705" y="312" text-anchor="end" fill="#6c757d">DATETIME</text>
+  </g>
+
+  <!-- relación: id (restaurantes) -> restaurante_id (tacos) -->
+  <path d="M300 115 H380 V244 H460" fill="none" stroke="#198754" stroke-width="2"/>
+  <!-- lado 1 -->
+  <path d="M312 105 V125 M320 105 V125" stroke="#198754" stroke-width="2"/>
+  <!-- lado N (pata de gallo) -->
+  <path d="M446 244 L460 232 M446 244 L460 256 M446 244 H460" stroke="#198754" stroke-width="2" fill="none"/>
+  <text x="380" y="180" text-anchor="middle" font-size="12" fill="#198754" transform="rotate(-90 372 180)">fk_tacos_restaurantes</text>
+  <text x="330" y="100" font-size="13" font-weight="bold" fill="#198754">1</text>
+  <text x="425" y="232" font-size="13" font-weight="bold" fill="#198754">N</text>
+</svg>

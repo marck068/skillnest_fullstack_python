@@ -1,0 +1,8 @@
+* { box-sizing: border-box; }
+body { font-family: system-ui, sans-serif; background: #f2f4f8; margin: 0; }
+.contenedor { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; padding: 40px 16px; }
+.tarjeta { background: #fff; border-radius: 10px; padding: 24px; width: 340px; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+label { display: block; margin-bottom: 12px; font-size: 14px; }
+input { width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ccd; border-radius: 6px; }
+button, .boton { display: inline-block; background: #2d6cdf; color: #fff; border: 0; padding: 10px 16px; border-radius: 6px; cursor: pointer; text-decoration: none; }
+.error { color: #b00020; font-size: 14px; margin: 4px 0; }

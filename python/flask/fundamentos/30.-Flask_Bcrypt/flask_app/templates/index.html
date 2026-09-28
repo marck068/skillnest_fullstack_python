@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login y Registro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="contenedor">
+        <section class="tarjeta">
+            <h2>Registro</h2>
+            {% with mensajes = get_flashed_messages(category_filter=["registro"]) %}
+                {% for m in mensajes %}<p class="error">{{ m }}</p>{% endfor %}
+            {% endwith %}
+            <form action="/registrar" method="post">
+                <label>Nombre <input type="text" name="nombre" required></label>
+                <label>Apellido <input type="text" name="apellido" required></label>
+                <label>E-mail <input type="email" name="email" required></label>
+                <label>Contraseña <input type="password" name="password" required></label>
+                <label>Confirmar contraseña <input type="password" name="confirmar_password" required></label>
+                <button type="submit">Registrarme</button>
+            </form>
+        </section>
+
+        <section class="tarjeta">
+            <h2>Iniciar sesión</h2>
+            {% with mensajes = get_flashed_messages(category_filter=["login"]) %}
+                {% for m in mensajes %}<p class="error">{{ m }}</p>{% endfor %}
+            {% endwith %}
+            <form action="/login" method="post">
+                <label>E-mail <input type="email" name="email" required></label>
+                <label>Contraseña <input type="password" name="password" required></label>
+                <button type="submit">Entrar</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

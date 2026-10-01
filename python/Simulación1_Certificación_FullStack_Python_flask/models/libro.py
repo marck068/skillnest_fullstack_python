@@ -47,10 +47,12 @@ def listar_por_usuario(usuario_id):
     )
 
 
-def listar_comunidad():
-    """Todos los libros de la plataforma (visibles para cualquier usuario registrado)."""
+def listar_comunidad(usuario_id):
+    """Libros publicados por los demás usuarios (los propios van en «Mis Libros»)."""
     return fetch_all(
         f"""SELECT l.*, u.nombre AS publicado_por, {_TOTAL_FAV} AS total_favoritos
             FROM libros l JOIN usuarios u ON u.id = l.usuario_id
-            ORDER BY l.created_at DESC"""
+            WHERE l.usuario_id <> %s
+            ORDER BY l.created_at DESC""",
+        (usuario_id,),
     )

@@ -13,7 +13,7 @@ bp = Blueprint("auth", __name__)
 def index():
     if session.get("usuario_id"):
         return redirect(url_for("libros.mis_libros"))
-    return redirect(url_for("auth.login"))
+    return render_template("auth/acceso.html", registro={}, login_email="")
 
 
 @bp.route("/login", methods=["GET", "POST"])

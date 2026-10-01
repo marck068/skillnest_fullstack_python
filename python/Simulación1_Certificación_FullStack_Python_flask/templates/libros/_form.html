@@ -19,7 +19,7 @@
   </div>
   <div class="row mb-3 align-items-center">
     <label class="col-sm-3 col-form-label" for="fecha_publicacion">Fecha de publicación:</label>
-    <div class="col-sm-5"><input type="date" class="form-control" id="fecha_publicacion" name="fecha_publicacion" required value="{{ libro.get('fecha_publicacion', '') }}"></div>
+    <div class="col-sm-5"><input type="date" class="form-control" id="fecha_publicacion" name="fecha_publicacion" max="{{ hoy }}" required value="{{ libro.get('fecha_publicacion', '') }}"></div>
   </div>
   <div class="row mb-3">
     <label class="col-sm-3 col-form-label" for="descripcion">Descripción:</label>

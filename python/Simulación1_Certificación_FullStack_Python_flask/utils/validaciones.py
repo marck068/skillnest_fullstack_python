@@ -1,6 +1,6 @@
 """Validaciones de backend (se repiten aquí aunque el HTML ya tenga required/minlength)."""
 import re
-from datetime import datetime
+from datetime import date, datetime
 
 GENEROS = ["Ciencia Ficción", "Fantasía", "Romance", "Novela", "Misterio",
            "Terror", "Desarrollo Personal", "Fábula", "Otros"]
@@ -28,8 +28,7 @@ def validar_registro(nombre, apellido, email, password, confirmar):
 
 
 def validar_libro(datos):
-    """Valida los datos de un libro. La fecha de publicación puede ser cualquiera
-    (pasada, presente o futura); solo debe ser una fecha válida."""
+    """Valida los datos de un libro. La fecha de publicación debe ser válida y no futura."""
     errores = []
     if not all(datos.get(c) for c in ("titulo", "autor", "genero", "fecha_publicacion", "descripcion")):
         errores.append("Todos los campos son obligatorios.")
@@ -43,7 +42,9 @@ def validar_libro(datos):
     if len(datos["descripcion"]) < 10:
         errores.append("La descripción debe tener al menos 10 caracteres.")
     try:
-        datetime.strptime(datos["fecha_publicacion"], "%Y-%m-%d")
+        fecha = datetime.strptime(datos["fecha_publicacion"], "%Y-%m-%d").date()
+        if fecha > date.today():
+            errores.append("La fecha de publicación no puede ser futura.")
     except ValueError:
         errores.append("La fecha de publicación no es válida.")
     return errores

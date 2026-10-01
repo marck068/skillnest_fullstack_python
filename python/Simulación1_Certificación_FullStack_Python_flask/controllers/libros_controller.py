@@ -33,14 +33,14 @@ def mis_libros():
     uid = session["usuario_id"]
     return render_template("libros/mis_libros.html",
                            mis_libros=Libro.listar_por_usuario(uid),
-                           comunidad=Libro.listar_comunidad())
+                           comunidad=Libro.listar_comunidad(uid))
 
 
 @bp.route("/explorar")
 @login_required
 def explorar():
     return render_template("libros/explorar.html",
-                           comunidad=Libro.listar_comunidad())
+                           comunidad=Libro.listar_comunidad(session["usuario_id"]))
 
 
 @bp.route("/libros/nuevo", methods=["GET", "POST"])

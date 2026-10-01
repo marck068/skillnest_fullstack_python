@@ -1,5 +1,6 @@
 """BookHub - punto de entrada de la aplicación Flask."""
 import secrets
+from datetime import date
 
 import pymysql
 from flask import Flask, abort, render_template, request, session
@@ -24,13 +25,14 @@ def proteger_csrf():
         session["csrf_token"] = secrets.token_hex(16)
     if request.method == "POST":
         token = request.form.get("csrf_token", "")
-        if not secrets.compare_digest(token, session["csrf_token"]):
+        if not secrets.compare_digest(token.encode("utf-8"), session["csrf_token"].encode("utf-8")):
             abort(400)
 
 
 @app.context_processor
-def inyectar_csrf():
-    return {"csrf_token": lambda: session.get("csrf_token", "")}
+def inyectar_globales():
+    return {"csrf_token": lambda: session.get("csrf_token", ""),
+            "hoy": date.today().isoformat()}
 
 
 def _error(codigo, mensaje):

@@ -1,0 +1,32 @@
+<form method="post" action="{{ accion }}" novalidate>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <div class="row mb-3 align-items-center">
+    <label class="col-sm-3 col-form-label" for="titulo">Título:</label>
+    <div class="col-sm-5"><input class="form-control" id="titulo" name="titulo" minlength="2" maxlength="150" required value="{{ libro.get('titulo', '') }}"></div>
+  </div>
+  <div class="row mb-3 align-items-center">
+    <label class="col-sm-3 col-form-label" for="autor">Autor:</label>
+    <div class="col-sm-5"><input class="form-control" id="autor" name="autor" maxlength="100" required value="{{ libro.get('autor', '') }}"></div>
+  </div>
+  <div class="row mb-3 align-items-center">
+    <label class="col-sm-3 col-form-label" for="genero">Género:</label>
+    <div class="col-sm-5">
+      <select class="form-select" id="genero" name="genero" required>
+        <option value="">Selecciona un género</option>
+        {% for g in generos %}<option value="{{ g }}" {{ 'selected' if libro.get('genero') == g }}>{{ g }}</option>{% endfor %}
+      </select>
+    </div>
+  </div>
+  <div class="row mb-3 align-items-center">
+    <label class="col-sm-3 col-form-label" for="fecha_publicacion">Fecha de publicación:</label>
+    <div class="col-sm-5"><input type="date" class="form-control" id="fecha_publicacion" name="fecha_publicacion" required value="{{ libro.get('fecha_publicacion', '') }}"></div>
+  </div>
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label" for="descripcion">Descripción:</label>
+    <div class="col-sm-9"><textarea class="form-control" id="descripcion" name="descripcion" rows="5" minlength="10" required>{{ libro.get('descripcion', '') }}</textarea></div>
+  </div>
+  <div class="row"><div class="col-sm-9 offset-sm-3">
+    <button type="submit" class="btn btn-dark px-4">{{ boton }}</button>
+    <a href="{{ url_for('libros.mis_libros') }}" class="ms-3">Cancelar</a>
+  </div></div>
+</form>

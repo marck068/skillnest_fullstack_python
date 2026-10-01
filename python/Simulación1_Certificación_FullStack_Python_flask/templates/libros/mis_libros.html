@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Mis Libros{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="page-title mb-0">Mis Libros</h1>
+  <a href="{{ url_for('libros.nuevo') }}" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Nuevo Libro</a>
+</div>
+
+<div class="card-panel mb-4">
+  <div class="table-responsive">
+    <table class="table table-sm table-bordered bookhub-table mb-0">
+      <thead><tr><th>Título</th><th>Autor</th><th>Género</th><th>Fecha</th><th>Favoritos</th><th>Acciones</th></tr></thead>
+      <tbody>
+        {% for l in mis_libros %}
+        <tr>
+          <td>{{ l.titulo }}</td><td>{{ l.autor }}</td><td>{{ l.genero }}</td>
+          <td>{{ l.fecha_publicacion }}</td><td>{{ l.total_favoritos }}</td>
+          <td class="text-nowrap">
+            <a href="{{ url_for('libros.detalle', libro_id=l.id) }}">Ver</a>
+            <a href="{{ url_for('libros.editar', libro_id=l.id) }}" class="ms-2">Editar</a>
+            <a href="#" class="ms-2 link-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar"
+               data-url="{{ url_for('libros.eliminar', libro_id=l.id) }}" data-titulo="{{ l.titulo }}">Borrar</a>
+          </td>
+        </tr>
+        {% else %}
+        <tr><td colspan="6" class="text-center text-muted py-3">Todavía no has agregado libros. Usa «Nuevo Libro» para empezar.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h2 class="page-title h3 mb-3">Libros de la Comunidad</h2>
+<div class="card-panel">{% include "libros/_tabla_comunidad.html" %}</div>
+
+<!-- Confirmación de borrado -->
+<div class="modal fade" id="modalEliminar" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form method="post" id="formEliminar" class="modal-content">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <div class="modal-header"><h5 class="modal-title">Eliminar libro</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div>
+      <div class="modal-body">¿Seguro que quieres eliminar <strong id="tituloEliminar"></strong>? Esta acción no se puede deshacer.</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+<div class="table-responsive">
+  <table class="table table-sm table-bordered bookhub-table mb-0">
+    <thead><tr><th>Título</th><th>Autor</th><th>Género</th><th>Publicado por</th><th>Favoritos</th><th>Acción</th></tr></thead>
+    <tbody>
+      {% for l in comunidad %}
+      <tr>
+        <td>{{ l.titulo }}</td><td>{{ l.autor }}</td><td>{{ l.genero }}</td>
+        <td>{{ l.publicado_por }}</td><td>{{ l.total_favoritos }}</td>
+        <td><a href="{{ url_for('libros.detalle', libro_id=l.id) }}">Ver</a></td>
+      </tr>
+      {% else %}
+      <tr><td colspan="6" class="text-center text-muted py-3">Aún no hay libros de otros usuarios.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

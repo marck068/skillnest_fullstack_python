@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Mis Favoritos{% endblock %}
+{% block content %}
+<h1 class="page-title mb-3">Mis Libros Favoritos</h1>
+<div class="card-panel">
+  <div class="table-responsive">
+    <table class="table table-sm table-bordered bookhub-table mb-0">
+      <thead><tr><th>Título</th><th>Autor</th><th>Género</th><th>Fecha</th><th>Acción</th></tr></thead>
+      <tbody>
+        {% for l in libros %}
+        <tr>
+          <td>{{ l.titulo }}</td><td>{{ l.autor }}</td><td>{{ l.genero }}</td><td>{{ l.fecha_publicacion }}</td>
+          <td><a href="{{ url_for('libros.detalle', libro_id=l.id) }}">Ver</a></td>
+        </tr>
+        {% else %}
+        <tr><td colspan="5" class="text-center text-muted py-3">Aún no tienes favoritos. Explora los libros de la comunidad.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

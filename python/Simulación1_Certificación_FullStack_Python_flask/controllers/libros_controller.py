@@ -33,14 +33,14 @@ def mis_libros():
     uid = session["usuario_id"]
     return render_template("libros/mis_libros.html",
                            mis_libros=Libro.listar_por_usuario(uid),
-                           comunidad=Libro.listar_comunidad(uid))
+                           comunidad=Libro.listar_comunidad())
 
 
 @bp.route("/explorar")
 @login_required
 def explorar():
     return render_template("libros/explorar.html",
-                           comunidad=Libro.listar_comunidad(session["usuario_id"]))
+                           comunidad=Libro.listar_comunidad())
 
 
 @bp.route("/libros/nuevo", methods=["GET", "POST"])
@@ -74,7 +74,7 @@ def editar(libro_id):
     datos = {**libro, "fecha_publicacion": fecha_original}
     if request.method == "POST":
         datos = _datos_form()
-        errores = validar_libro(datos, fecha_original)
+        errores = validar_libro(datos)
         if errores:
             for e in errores:
                 flash(e, "danger")

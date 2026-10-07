@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Categorías{% endblock %}
+{% block content %}
+<div class="page-heading d-flex justify-content-between align-items-center">
+    <h1>Categorías</h1>
+    <a href="{{ url_for('categorias.nueva') }}" class="btn btn-primary">+ Nueva Categoría</a>
+</div>
+<div class="card-panel p-0">
+    <div class="table-responsive">
+        <table class="table table-sm table-bordered task-table mb-0">
+            <thead><tr><th>Nombre</th><th>Cantidad de tareas</th><th>Acciones</th></tr></thead>
+            <tbody>
+            {% for c in categorias %}
+                <tr>
+                    <td class="fw-semibold">{{ c.nombre }}</td>
+                    <td>{{ c.total_tareas }}</td>
+                    <td class="action-links">
+                        <a href="{{ url_for('categorias.editar', categoria_id=c.id) }}">Ver / Editar</a>
+                        <form class="d-inline" method="post" action="{{ url_for('categorias.eliminar', categoria_id=c.id) }}" onsubmit="return confirm('¿Eliminar esta categoría? Solo se permite si no tiene tareas.')">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button class="link-button danger" type="submit">Borrar</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr><td colspan="3" class="text-center py-4 text-muted">No tienes categorías.</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="yellow-note mt-3"><strong>Validaciones en la creación:</strong> campo obligatorio, mínimo 3 caracteres y nombre único dentro del usuario.</div>
+{% endblock %}

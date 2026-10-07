@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Login / Registro{% endblock %}
+{% block content %}
+<div class="auth-page">
+    <div class="auth-brand text-center">
+        <div class="task-logo-large"><i class="bi bi-check-lg"></i></div>
+        <div>
+            <h1>TaskTrack</h1>
+            <p>Organiza tus tareas y proyectos</p>
+        </div>
+    </div>
+
+    <div class="auth-card">
+        <div class="row g-0">
+            <div class="col-lg-6 auth-column border-end-lg">
+                <h2>Crear Cuenta</h2>
+                <form method="post" action="{{ url_for('auth.registro') }}" novalidate>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    {% for label, name in [("Nombre","nombre"),("Apellido","apellido"),("E-mail","email")] %}
+                    <div class="row mb-2 align-items-center">
+                        <label class="col-sm-4 form-label mb-0" for="{{ name }}">{{ label }}:</label>
+                        <div class="col-sm-8">
+                            <input class="form-control form-control-sm" id="{{ name }}" name="{{ name }}"
+                                   type="{{ 'email' if name == 'email' else 'text' }}" required
+                                   value="{{ registro.get(name, '') }}">
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="row mb-2 align-items-center">
+                        <label class="col-sm-4 form-label mb-0" for="password">Contraseña:</label>
+                        <div class="col-sm-8"><input class="form-control form-control-sm" type="password" id="password" name="password" required></div>
+                    </div>
+                    <div class="row mb-3 align-items-center">
+                        <label class="col-sm-4 form-label mb-0" for="confirmar">Confirmar Contraseña:</label>
+                        <div class="col-sm-8"><input class="form-control form-control-sm" type="password" id="confirmar" name="confirmar" required></div>
+                    </div>
+                    <button class="btn btn-dark w-100" type="submit">Registrarse</button>
+                </form>
+                <p class="small mt-3 mb-0 text-center"><a href="{{ url_for('auth.login') }}">¿Ya tienes cuenta? Inicia sesión</a></p>
+            </div>
+
+            <div class="col-lg-6 auth-column">
+                <h2>Iniciar Sesión</h2>
+                <form method="post" action="{{ url_for('auth.login') }}" novalidate>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <div class="mb-2">
+                        <label class="form-label" for="login_email">E-mail:</label>
+                        <input class="form-control form-control-sm" type="email" id="login_email" name="email" required value="{{ login_email }}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="login_password">Contraseña:</label>
+                        <input class="form-control form-control-sm" type="password" id="login_password" name="password" required>
+                    </div>
+                    <button class="btn btn-dark w-100" type="submit">Iniciar Sesión</button>
+                </form>
+                <p class="small mt-3 mb-0 text-center"><a href="{{ url_for('auth.registro') }}">¿No tienes cuenta? Regístrate</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="yellow-note mt-3">
+        <strong>Validaciones:</strong> nombre y apellido mínimo 2 caracteres, e-mail válido y único, contraseña de 8 o más caracteres y confirmación obligatoria.
+    </div>
+</div>
+{% endblock %}

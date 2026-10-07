@@ -1,0 +1,41 @@
+<form method="post" action="{{ url_for('tareas.editar', tarea_id=tarea.id) if tarea.id else url_for('tareas.nueva') }}" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="row mb-3 align-items-center">
+        <label class="col-md-3 col-form-label" for="titulo">Título:</label>
+        <div class="col-md-6"><input class="form-control" id="titulo" name="titulo" maxlength="120" required value="{{ tarea.get('titulo','') }}"></div>
+    </div>
+    <div class="row mb-3 align-items-center">
+        <label class="col-md-3 col-form-label" for="categoria_id">Categoría:</label>
+        <div class="col-md-6">
+            <select class="form-select" id="categoria_id" name="categoria_id" required>
+                <option value="">Selecciona una categoría</option>
+                {% for c in categorias %}
+                <option value="{{ c.id }}" {{ 'selected' if tarea.get('categoria_id')|string == c.id|string }}>{{ c.nombre }}</option>
+                {% endfor %}
+            </select>
+            {% if not categorias %}<small class="text-danger">Primero debes crear una categoría.</small>{% endif %}
+        </div>
+    </div>
+    <div class="row mb-3 align-items-center">
+        <label class="col-md-3 col-form-label" for="prioridad">Prioridad:</label>
+        <div class="col-md-6">
+            <select class="form-select" id="prioridad" name="prioridad" required>
+                {% for p in prioridades %}<option value="{{ p }}" {{ 'selected' if tarea.get('prioridad') == p }}>{{ p }}</option>{% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="row mb-3 align-items-center">
+        <label class="col-md-3 col-form-label" for="fecha_limite">Fecha límite:</label>
+        <div class="col-md-6"><input type="date" class="form-control" id="fecha_limite" name="fecha_limite" min="{{ hoy }}" required value="{{ tarea.get('fecha_limite').strftime('%Y-%m-%d') if tarea.get('fecha_limite') else '' }}"></div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-md-3 col-form-label" for="descripcion">Descripción:</label>
+        <div class="col-md-9"><textarea class="form-control" id="descripcion" name="descripcion" rows="5" minlength="10" required>{{ tarea.get('descripcion','') }}</textarea></div>
+    </div>
+    <div class="row">
+        <div class="col-md-9 offset-md-3">
+            <button class="btn btn-dark px-4" type="submit">{{ 'Actualizar' if tarea.id else 'Guardar' }}</button>
+            <a class="btn btn-link" href="{{ url_for('tareas.dashboard') }}">Cancelar</a>
+        </div>
+    </div>
+</form>

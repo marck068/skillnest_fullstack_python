@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block title %}Mis Tareas{% endblock %}
+{% block content %}
+<div class="page-heading d-flex justify-content-between align-items-center flex-wrap gap-2">
+    <div>
+        <h1>Mis Tareas</h1>
+        <p class="text-muted mb-0">Gestiona tus tareas y proyectos.</p>
+    </div>
+    <a href="{{ url_for('tareas.nueva') }}" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Nueva Tarea</a>
+</div>
+
+<div class="card-panel filter-panel mb-4">
+    <form method="get" action="{{ url_for('tareas.dashboard') }}" class="row g-2">
+        <div class="col-lg-4">
+            <div class="input-group input-group-sm">
+                <input class="form-control" name="q" placeholder="Buscar por título..." value="{{ filtros.q }}">
+                <button class="btn btn-dark" type="submit"><i class="bi bi-search"></i></button>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4">
+            <select class="form-select form-select-sm" name="categoria">
+                <option value="">Todas las categorías</option>
+                {% for c in categorias %}
+                <option value="{{ c.id }}" {{ 'selected' if filtros.categoria == c.id|string }}>{{ c.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-lg-2 col-md-4">
+            <select class="form-select form-select-sm" name="estado">
+                <option value="">Todos los estados</option>
+                {% for e in estados %}<option value="{{ e }}" {{ 'selected' if filtros.estado == e }}>{{ e }}</option>{% endfor %}
+            </select>
+        </div>
+        <div class="col-lg-2 col-md-4">
+            <select class="form-select form-select-sm" name="prioridad">
+                <option value="">Todas las prioridades</option>
+                {% for p in prioridades %}<option value="{{ p }}" {{ 'selected' if filtros.prioridad == p }}>{{ p }}</option>{% endfor %}
+            </select>
+        </div>
+        <div class="col-lg-2">
+            <a class="btn btn-light btn-sm w-100 border" href="{{ url_for('tareas.dashboard') }}">Limpiar filtros</a>
+        </div>
+    </form>
+</div>
+
+<div class="card-panel p-0 mb-4">
+    <div class="table-responsive">
+        <table class="table table-sm table-bordered task-table mb-0">
+            <thead>
+                <tr><th>Título</th><th>Categoría</th><th>Prioridad</th><th>Fecha Límite</th><th>Estado</th><th>Acciones</th></tr>
+            </thead>
+            <tbody>
+            {% for tarea in tareas %}
+                <tr>
+                    <td class="fw-semibold"><a class="task-link" href="{{ url_for('tareas.detalle', tarea_id=tarea.id) }}">{{ tarea.titulo }}</a></td>
+                    <td>{{ tarea.categoria_nombre }}</td>
+                    <td><span class="badge priority-{{ tarea.prioridad|lower|replace(' ', '-') }}">{{ tarea.prioridad }}</span></td>
+                    <td>{{ tarea.fecha_limite.strftime('%Y-%m-%d') }}</td>
+                    <td><span class="status-badge status-{{ tarea.estado|lower|replace(' ', '-') }}">{{ tarea.estado }}</span></td>
+                    <td class="text-nowrap action-links">
+                        <a href="{{ url_for('tareas.detalle', tarea_id=tarea.id) }}">Ver</a>
+                        <a href="{{ url_for('tareas.editar', tarea_id=tarea.id) }}">Editar</a>
+                        <form class="d-inline" method="post" action="{{ url_for('tareas.eliminar', tarea_id=tarea.id) }}" onsubmit="return confirmarEliminacion('{{ tarea.titulo|e }}')">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button class="link-button danger" type="submit">Borrar</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr><td colspan="6" class="text-center py-4 text-muted">No hay tareas que coincidan con los filtros.</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-xl-8">
+        <div class="card-panel">
+            <h2 class="section-title">Próximas tareas</h2>
+            <div class="table-responsive">
+                <table class="table table-sm mb-0">
+                    <thead><tr><th>Título</th><th>Fecha Límite</th><th>Días restantes</th></tr></thead>
+                    <tbody>
+                    {% for tarea in proximas %}
+                        <tr>
+                            <td><a href="{{ url_for('tareas.detalle', tarea_id=tarea.id if tarea.id is defined else 0) }}">{{ tarea.titulo }}</a></td>
+                            <td>{{ tarea.fecha_limite.strftime('%Y-%m-%d') }}</td>
+                            <td>{{ tarea.dias_restantes }}</td>
+                        </tr>
+                    {% else %}
+                        <tr><td colspan="3" class="text-center text-muted">No tienes tareas pendientes próximas.</td></tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4">
+        <div class="card-panel summary-panel">
+            <h2 class="section-title">Resumen</h2>
+            <p>Total de tareas: <strong>{{ resumen.total }}</strong></p>
+            <p>Pendientes: <strong>{{ resumen.pendientes }}</strong></p>
+            <p>En progreso: <strong>{{ resumen.en_progreso }}</strong></p>
+            <p>Completadas: <strong>{{ resumen.completadas }}</strong></p>
+            <div class="yellow-note small">Las tareas se ordenan por fecha límite ascendente.</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

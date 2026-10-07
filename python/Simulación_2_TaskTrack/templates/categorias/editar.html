@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Editar Categoría{% endblock %}
+{% block content %}
+<div class="form-page category-page">
+    <h1 class="mb-3">Editar Categoría</h1>
+    <div class="card-panel narrow-card">
+        <form method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <label class="form-label" for="nombre">Nombre:</label>
+            <input class="form-control mb-3" id="nombre" name="nombre" maxlength="50" required value="{{ nombre }}">
+            <button class="btn btn-dark px-4">Actualizar</button>
+            <a class="btn btn-link" href="{{ url_for('categorias.listar') }}">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

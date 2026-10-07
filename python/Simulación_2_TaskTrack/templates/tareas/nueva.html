@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Nueva Tarea{% endblock %}
+{% block content %}
+<div class="form-page">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Nueva Tarea</h1>
+        <a href="{{ url_for('tareas.dashboard') }}" class="btn btn-light border">Cancelar</a>
+    </div>
+    <div class="card-panel">
+        {% include "tareas/_form.html" %}
+    </div>
+</div>
+{% endblock %}

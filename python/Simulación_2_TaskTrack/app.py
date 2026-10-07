@@ -4,13 +4,20 @@ from datetime import date
 import pymysql
 from flask import Flask, abort, render_template, request, session
 
-from config.database import SECRET_KEY
+from config.database import SECRET_KEY, ensure_database
+
 from controllers.auth_controller import bp as auth_bp
 from controllers.tareas_controller import bp as tareas_bp
 from controllers.categorias_controller import bp as categorias_bp
 
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
+
+# Crea automáticamente la base de datos y sus tablas al iniciar.
+try:
+    ensure_database()
+except pymysql.MySQLError as exc:
+    print("[TaskTrack] MySQL no está disponible:", exc)
 
 app.register_blueprint(auth_bp)
 app.register_blueprint(tareas_bp)
@@ -59,7 +66,7 @@ def error_bd(_):
     return render_template(
         "errors/error.html",
         codigo=500,
-        mensaje="No se pudo acceder a MySQL. Revisa tu archivo .env y que el servidor esté iniciado.",
+        mensaje="No se pudo conectar con MySQL. Asegúrate de que MySQL esté iniciado (por ejemplo, desde XAMPP) y vuelve a cargar la página.",
     ), 500
 
 

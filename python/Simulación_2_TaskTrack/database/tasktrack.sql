@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS tasktrack
-  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+DROP DATABASE IF EXISTS tasktrack;
+CREATE DATABASE tasktrack CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE tasktrack;
 
 CREATE TABLE usuarios (
